@@ -1,0 +1,69 @@
+.companyList{
+    background-color: #f6f6f8;
+    position: relative;
+}
+.companyListHead{
+    height: 270px;
+    width: 100%;
+    background-color: white;
+    position: relative;
+}
+.companyListHeadContent{
+    width:50%;
+    text-align: left;
+    position: absolute;
+    margin-left: 20%;
+}
+.companyListBody{
+    height:1000px;
+    width: 100%;
+    *position: absolute;
+    margin-top: 50px;
+
+}
+.companyListType{
+    padding-top:80px;
+}
+.companyListTypeSpan{
+    margin-left: 10px;
+}
+.companyListTypeSpan:hover{
+    color: #5dd5c8;
+}
+.companyListBar{
+    margin-left: 0px;
+    margin-top: 10px;
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    border-left: 5px solid #f6f6f8;
+}
+.companyListImg{
+    position: absolute;
+    margin: 20px 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 10%;
+}
+.companyListName{
+    *float: right;
+    position: absolute;
+    margin-left: 170px;
+    margin-top: 17px;
+    font-size: 18px;
+}
+.companyListName:hover{
+    color: #5dd5c8;
+}
+.companyListLabel{
+    display: inline-block;
+    position: absolute;
+    margin-left: 170px;
+    margin-top: 50px;
+    font-size: 13px;
+    color: darkgrey;
+}
+.companyListHot{
+    color: #5dd5c8;
+}
