@@ -1,9 +1,9 @@
 package com.lwl.bosshire.servlet.auth;
 
 import com.lwl.bosshire.common.ResponseMessage;
-import com.lwl.bosshire.pojo.User;
 import com.lwl.bosshire.config.DataSourceUtils;
 import com.lwl.bosshire.dao.UserMapper;
+import com.lwl.bosshire.pojo.User;
 import lombok.extern.log4j.Log4j;
 
 import javax.servlet.ServletException;

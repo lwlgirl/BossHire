@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <link href="/css/loginCss.css" rel="stylesheet">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body style="background: #5dd5c8 url(https://static.zhipin.com/zhipin-geek/v73/web/geek/images/newbg.png) center bottom ;position: fixed;">
+    <button id="btn">button</button>
+    <h1 id="h1"></h1>
 
         <div style="background-color: white;border-radius: 3%;height: 550px;width: 800px;margin: 200px 550px;position: relative">
 
@@ -32,10 +35,55 @@
                  </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 350px;height:50px; background-color: #5dd5c8;border-color: #5dd5c8;border-radius: 0px">登录</button>
-
             </form>
         </div>
 
+        <script type="text/javascript">
+                //在文档加载完成后就会执行
+                window.onload = function () {
+                    //得到btn元素
+                    var btn = document.getElementById("btn");
+
+                    //给btn的click事件注册监听
+                    //在btn被点击的时候执行
+                    btn.onclick = function () {
+
+                        //创建xmlHttpRequest对象
+                        var xmlHttp = createXMLHttpRequest()
+
+                        xmlHttp.open("POST",'http://fs2.lzfnb.top:8080/api/user/login', true);
+                        xmlHttp.onreadystatechange = handler;
+                        xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                        xmlHttp.setRequestHeader('Access-Control-Allow-Origin','*');//允许所有来源访问
+                        xmlHttp.setRequestHeader('Access-Control-Allow-Method','POST,GET');//允许访问的方式
+                        xmlHttp.send("password=sdfsdfd&username=sadfsd");
+
+                        //给异步对象的onreadystatechange事件注册监听
+                        function handler() {
+                            console.log(xmlHttp.readyState);
+                            console.log(xmlHttp.status);
+                            //当xmlHttp的状态发生变化的时候,就会执行
+                            //判断readyState为4状态,服务器响应状态码status为200
+                            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+                                //获取responseText文本格式的响应内容
+                                var responseText = xmlHttp.responseText;
+
+                                console.log(responseText)
+                            }
+                        };
+
+                    }
+            };
+
+            function createXMLHttpRequest() {
+                return new XMLHttpRequest()
+            }
+        </script>
+
+
+
 </body>
+
 
 </html>

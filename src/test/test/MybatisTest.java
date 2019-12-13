@@ -1,7 +1,7 @@
 package test;
 
-import com.lwl.bosshire.pojo.User;
 import com.lwl.bosshire.dao.UserMapper;
+import com.lwl.bosshire.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
