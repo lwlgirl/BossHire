@@ -1,20 +1,30 @@
 package com.lwl.bosshire.dao;
 
 import com.lwl.bosshire.pojo.User;
-
+import com.lwl.bosshire.pojo.UserExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
+    int countByExample(UserExample example);
 
-    int delete(int userId);
+    int deleteByExample(UserExample example);
 
-    int insert(User user);
+    int deleteByPrimaryKey(Integer userId);
 
-    int update(User user);
+    int insert(User record);
 
-    User selectUser(int id);
+    int insertSelective(User record);
 
-    User selectUser(String username);
+    List<User> selectByExample(UserExample example);
 
-    List<User> selectAll();
+    User selectByPrimaryKey(Integer userId);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwl.bosshire.dao.JobApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.JobApply" >
+    <id column="ja_id" property="jaId" jdbcType="INTEGER" />
+    <result column="ja_company_id" property="jaCompanyId" jdbcType="INTEGER" />
+    <result column="ja_cv_id" property="jaCvId" jdbcType="INTEGER" />
+    <result column="ja_deliverer_uid" property="jaDelivererUid" jdbcType="INTEGER" />
+    <result column="ja_submit_time" property="jaSubmitTime" jdbcType="INTEGER" />
+    <result column="ja_status" property="jaStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ja_id, ja_company_id, ja_cv_id, ja_deliverer_uid, ja_submit_time, ja_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.JobApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from job_apply_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from job_apply_inf
+    where ja_id = #{jaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from job_apply_inf
+    where ja_id = #{jaId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lwl.bosshire.pojo.JobApplyExample" >
+    delete from job_apply_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lwl.bosshire.pojo.JobApply" >
+    insert into job_apply_inf (ja_id, ja_company_id, ja_cv_id, 
+      ja_deliverer_uid, ja_submit_time, ja_status
+      )
+    values (#{jaId,jdbcType=INTEGER}, #{jaCompanyId,jdbcType=INTEGER}, #{jaCvId,jdbcType=INTEGER}, 
+      #{jaDelivererUid,jdbcType=INTEGER}, #{jaSubmitTime,jdbcType=INTEGER}, #{jaStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.JobApply" >
+    insert into job_apply_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jaId != null" >
+        ja_id,
+      </if>
+      <if test="jaCompanyId != null" >
+        ja_company_id,
+      </if>
+      <if test="jaCvId != null" >
+        ja_cv_id,
+      </if>
+      <if test="jaDelivererUid != null" >
+        ja_deliverer_uid,
+      </if>
+      <if test="jaSubmitTime != null" >
+        ja_submit_time,
+      </if>
+      <if test="jaStatus != null" >
+        ja_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jaId != null" >
+        #{jaId,jdbcType=INTEGER},
+      </if>
+      <if test="jaCompanyId != null" >
+        #{jaCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="jaCvId != null" >
+        #{jaCvId,jdbcType=INTEGER},
+      </if>
+      <if test="jaDelivererUid != null" >
+        #{jaDelivererUid,jdbcType=INTEGER},
+      </if>
+      <if test="jaSubmitTime != null" >
+        #{jaSubmitTime,jdbcType=INTEGER},
+      </if>
+      <if test="jaStatus != null" >
+        #{jaStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lwl.bosshire.pojo.JobApplyExample" resultType="java.lang.Integer" >
+    select count(*) from job_apply_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update job_apply_inf
+    <set >
+      <if test="record.jaId != null" >
+        ja_id = #{record.jaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.jaCompanyId != null" >
+        ja_company_id = #{record.jaCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.jaCvId != null" >
+        ja_cv_id = #{record.jaCvId,jdbcType=INTEGER},
+      </if>
+      <if test="record.jaDelivererUid != null" >
+        ja_deliverer_uid = #{record.jaDelivererUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.jaSubmitTime != null" >
+        ja_submit_time = #{record.jaSubmitTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.jaStatus != null" >
+        ja_status = #{record.jaStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update job_apply_inf
+    set ja_id = #{record.jaId,jdbcType=INTEGER},
+      ja_company_id = #{record.jaCompanyId,jdbcType=INTEGER},
+      ja_cv_id = #{record.jaCvId,jdbcType=INTEGER},
+      ja_deliverer_uid = #{record.jaDelivererUid,jdbcType=INTEGER},
+      ja_submit_time = #{record.jaSubmitTime,jdbcType=INTEGER},
+      ja_status = #{record.jaStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwl.bosshire.pojo.JobApply" >
+    update job_apply_inf
+    <set >
+      <if test="jaCompanyId != null" >
+        ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="jaCvId != null" >
+        ja_cv_id = #{jaCvId,jdbcType=INTEGER},
+      </if>
+      <if test="jaDelivererUid != null" >
+        ja_deliverer_uid = #{jaDelivererUid,jdbcType=INTEGER},
+      </if>
+      <if test="jaSubmitTime != null" >
+        ja_submit_time = #{jaSubmitTime,jdbcType=INTEGER},
+      </if>
+      <if test="jaStatus != null" >
+        ja_status = #{jaStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ja_id = #{jaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.JobApply" >
+    update job_apply_inf
+    set ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
+      ja_cv_id = #{jaCvId,jdbcType=INTEGER},
+      ja_deliverer_uid = #{jaDelivererUid,jdbcType=INTEGER},
+      ja_submit_time = #{jaSubmitTime,jdbcType=INTEGER},
+      ja_status = #{jaStatus,jdbcType=INTEGER}
+    where ja_id = #{jaId,jdbcType=INTEGER}
+  </update>
+</mapper>

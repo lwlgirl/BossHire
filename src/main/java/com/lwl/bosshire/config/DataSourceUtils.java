@@ -7,25 +7,17 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DataSourceUtils {
+public final class DataSourceUtils {
     private static final DataSourceUtils instance;
     private final SqlSessionFactory sqlSessionFactory;
     private final ThreadLocal<SqlSession> sessionThreadLocal = new ThreadLocal<>();
     static {
-        try {
-            instance = new DataSourceUtils();
-        } catch (IOException e) {
-            throw new Error(e);
-        }
+        instance = new DataSourceUtils();
     }
 
-    private DataSourceUtils() throws IOException {
+    private DataSourceUtils() {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("mybatis-config.xml");
         this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-    }
-
-    public static DataSourceUtils getInstance() {
-        return instance;
     }
 
     private static void openSession() {

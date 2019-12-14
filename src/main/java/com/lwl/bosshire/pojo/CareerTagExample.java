@@ -3,14 +3,14 @@ package com.lwl.bosshire.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResumeExample {
+public class CareerTagExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ResumeExample() {
+    public CareerTagExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,193 +104,123 @@ public class ResumeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andResumeIdIsNull() {
-            addCriterion("resume_id is null");
+        public Criteria andTagIdIsNull() {
+            addCriterion("tag_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdIsNotNull() {
-            addCriterion("resume_id is not null");
+        public Criteria andTagIdIsNotNull() {
+            addCriterion("tag_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdEqualTo(Integer value) {
-            addCriterion("resume_id =", value, "resumeId");
+        public Criteria andTagIdEqualTo(Integer value) {
+            addCriterion("tag_id =", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdNotEqualTo(Integer value) {
-            addCriterion("resume_id <>", value, "resumeId");
+        public Criteria andTagIdNotEqualTo(Integer value) {
+            addCriterion("tag_id <>", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdGreaterThan(Integer value) {
-            addCriterion("resume_id >", value, "resumeId");
+        public Criteria andTagIdGreaterThan(Integer value) {
+            addCriterion("tag_id >", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("resume_id >=", value, "resumeId");
+        public Criteria andTagIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tag_id >=", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdLessThan(Integer value) {
-            addCriterion("resume_id <", value, "resumeId");
+        public Criteria andTagIdLessThan(Integer value) {
+            addCriterion("tag_id <", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("resume_id <=", value, "resumeId");
+        public Criteria andTagIdLessThanOrEqualTo(Integer value) {
+            addCriterion("tag_id <=", value, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdIn(List<Integer> values) {
-            addCriterion("resume_id in", values, "resumeId");
+        public Criteria andTagIdIn(List<Integer> values) {
+            addCriterion("tag_id in", values, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdNotIn(List<Integer> values) {
-            addCriterion("resume_id not in", values, "resumeId");
+        public Criteria andTagIdNotIn(List<Integer> values) {
+            addCriterion("tag_id not in", values, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdBetween(Integer value1, Integer value2) {
-            addCriterion("resume_id between", value1, value2, "resumeId");
+        public Criteria andTagIdBetween(Integer value1, Integer value2) {
+            addCriterion("tag_id between", value1, value2, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("resume_id not between", value1, value2, "resumeId");
+        public Criteria andTagIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("tag_id not between", value1, value2, "tagId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentIsNull() {
-            addCriterion("resume_content is null");
+        public Criteria andCareerIdIsNull() {
+            addCriterion("career_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentIsNotNull() {
-            addCriterion("resume_content is not null");
+        public Criteria andCareerIdIsNotNull() {
+            addCriterion("career_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentEqualTo(String value) {
-            addCriterion("resume_content =", value, "resumeContent");
+        public Criteria andCareerIdEqualTo(Integer value) {
+            addCriterion("career_id =", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentNotEqualTo(String value) {
-            addCriterion("resume_content <>", value, "resumeContent");
+        public Criteria andCareerIdNotEqualTo(Integer value) {
+            addCriterion("career_id <>", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentGreaterThan(String value) {
-            addCriterion("resume_content >", value, "resumeContent");
+        public Criteria andCareerIdGreaterThan(Integer value) {
+            addCriterion("career_id >", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentGreaterThanOrEqualTo(String value) {
-            addCriterion("resume_content >=", value, "resumeContent");
+        public Criteria andCareerIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("career_id >=", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentLessThan(String value) {
-            addCriterion("resume_content <", value, "resumeContent");
+        public Criteria andCareerIdLessThan(Integer value) {
+            addCriterion("career_id <", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentLessThanOrEqualTo(String value) {
-            addCriterion("resume_content <=", value, "resumeContent");
+        public Criteria andCareerIdLessThanOrEqualTo(Integer value) {
+            addCriterion("career_id <=", value, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentLike(String value) {
-            addCriterion("resume_content like", value, "resumeContent");
+        public Criteria andCareerIdIn(List<Integer> values) {
+            addCriterion("career_id in", values, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentNotLike(String value) {
-            addCriterion("resume_content not like", value, "resumeContent");
+        public Criteria andCareerIdNotIn(List<Integer> values) {
+            addCriterion("career_id not in", values, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentIn(List<String> values) {
-            addCriterion("resume_content in", values, "resumeContent");
+        public Criteria andCareerIdBetween(Integer value1, Integer value2) {
+            addCriterion("career_id between", value1, value2, "careerId");
             return (Criteria) this;
         }
 
-        public Criteria andResumeContentNotIn(List<String> values) {
-            addCriterion("resume_content not in", values, "resumeContent");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeContentBetween(String value1, String value2) {
-            addCriterion("resume_content between", value1, value2, "resumeContent");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeContentNotBetween(String value1, String value2) {
-            addCriterion("resume_content not between", value1, value2, "resumeContent");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserIsNull() {
-            addCriterion("resume_user is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserIsNotNull() {
-            addCriterion("resume_user is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserEqualTo(Integer value) {
-            addCriterion("resume_user =", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserNotEqualTo(Integer value) {
-            addCriterion("resume_user <>", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserGreaterThan(Integer value) {
-            addCriterion("resume_user >", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserGreaterThanOrEqualTo(Integer value) {
-            addCriterion("resume_user >=", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserLessThan(Integer value) {
-            addCriterion("resume_user <", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserLessThanOrEqualTo(Integer value) {
-            addCriterion("resume_user <=", value, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserIn(List<Integer> values) {
-            addCriterion("resume_user in", values, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserNotIn(List<Integer> values) {
-            addCriterion("resume_user not in", values, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserBetween(Integer value1, Integer value2) {
-            addCriterion("resume_user between", value1, value2, "resumeUser");
-            return (Criteria) this;
-        }
-
-        public Criteria andResumeUserNotBetween(Integer value1, Integer value2) {
-            addCriterion("resume_user not between", value1, value2, "resumeUser");
+        public Criteria andCareerIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("career_id not between", value1, value2, "careerId");
             return (Criteria) this;
         }
     }

@@ -5,17 +5,15 @@ public class Career {
 
     private String careerName;
 
-    private String careerDescribe;
-
-    private String careerRequirement;
+    private Integer careerType;
 
     private Integer careerSalaryMin;
 
     private Integer careerSalaryMax;
 
-    private Integer careerCompany;
+    private Integer careerCompanyId;
 
-    private String careerAdvantage;
+    private String careerSalaryDesc;
 
     public Integer getCareerId() {
         return careerId;
@@ -33,20 +31,12 @@ public class Career {
         this.careerName = careerName == null ? null : careerName.trim();
     }
 
-    public String getCareerDescribe() {
-        return careerDescribe;
+    public Integer getCareerType() {
+        return careerType;
     }
 
-    public void setCareerDescribe(String careerDescribe) {
-        this.careerDescribe = careerDescribe == null ? null : careerDescribe.trim();
-    }
-
-    public String getCareerRequirement() {
-        return careerRequirement;
-    }
-
-    public void setCareerRequirement(String careerRequirement) {
-        this.careerRequirement = careerRequirement == null ? null : careerRequirement.trim();
+    public void setCareerType(Integer careerType) {
+        this.careerType = careerType;
     }
 
     public Integer getCareerSalaryMin() {
@@ -65,19 +55,19 @@ public class Career {
         this.careerSalaryMax = careerSalaryMax;
     }
 
-    public Integer getCareerCompany() {
-        return careerCompany;
+    public Integer getCareerCompanyId() {
+        return careerCompanyId;
     }
 
-    public void setCareerCompany(Integer careerCompany) {
-        this.careerCompany = careerCompany;
+    public void setCareerCompanyId(Integer careerCompanyId) {
+        this.careerCompanyId = careerCompanyId;
     }
 
-    public String getCareerAdvantage() {
-        return careerAdvantage;
+    public String getCareerSalaryDesc() {
+        return careerSalaryDesc;
     }
 
-    public void setCareerAdvantage(String careerAdvantage) {
-        this.careerAdvantage = careerAdvantage == null ? null : careerAdvantage.trim();
+    public void setCareerSalaryDesc(String careerSalaryDesc) {
+        this.careerSalaryDesc = careerSalaryDesc == null ? null : careerSalaryDesc.trim();
     }
 }

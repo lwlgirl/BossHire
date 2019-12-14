@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lwl.bosshire.dao.CVMapper" >
+  <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.CV" >
+    <id column="cv_id" property="cvId" jdbcType="INTEGER" />
+    <result column="cv_uid" property="cvUid" jdbcType="INTEGER" />
+    <result column="cv_full_name" property="cvFullName" jdbcType="CHAR" />
+    <result column="cv_sex" property="cvSex" jdbcType="INTEGER" />
+    <result column="cv_phone" property="cvPhone" jdbcType="VARCHAR" />
+    <result column="cv_birth" property="cvBirth" jdbcType="VARCHAR" />
+    <result column="cv_email" property="cvEmail" jdbcType="VARCHAR" />
+    <result column="cv_wxid" property="cvWxid" jdbcType="INTEGER" />
+    <result column="cv_create_time" property="cvCreateTime" jdbcType="TIMESTAMP" />
+    <result column="cv_status" property="cvStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lwl.bosshire.pojo.CVWithBLOBs" extends="BaseResultMap" >
+    <result column="cv_personal_skill" property="cvPersonalSkill" jdbcType="LONGVARCHAR" />
+    <result column="cv_hope_career" property="cvHopeCareer" jdbcType="LONGVARCHAR" />
+    <result column="cv_work_exp" property="cvWorkExp" jdbcType="LONGVARCHAR" />
+    <result column="cv_project_exp" property="cvProjectExp" jdbcType="LONGVARCHAR" />
+    <result column="cv_study_exp" property="cvStudyExp" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cv_id, cv_uid, cv_full_name, cv_sex, cv_phone, cv_birth, cv_email, cv_wxid, cv_create_time, 
+    cv_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    cv_personal_skill, cv_hope_career, cv_work_exp, cv_project_exp, cv_study_exp
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lwl.bosshire.pojo.CVExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cv_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.CVExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cv_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cv_inf
+    where cv_id = #{cvId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cv_inf
+    where cv_id = #{cvId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lwl.bosshire.pojo.CVExample" >
+    delete from cv_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lwl.bosshire.pojo.CVWithBLOBs" >
+    insert into cv_inf (cv_id, cv_uid, cv_full_name, 
+      cv_sex, cv_phone, cv_birth, 
+      cv_email, cv_wxid, cv_create_time, 
+      cv_status, cv_personal_skill, cv_hope_career, 
+      cv_work_exp, cv_project_exp, cv_study_exp
+      )
+    values (#{cvId,jdbcType=INTEGER}, #{cvUid,jdbcType=INTEGER}, #{cvFullName,jdbcType=CHAR}, 
+      #{cvSex,jdbcType=INTEGER}, #{cvPhone,jdbcType=VARCHAR}, #{cvBirth,jdbcType=VARCHAR}, 
+      #{cvEmail,jdbcType=VARCHAR}, #{cvWxid,jdbcType=INTEGER}, #{cvCreateTime,jdbcType=TIMESTAMP}, 
+      #{cvStatus,jdbcType=INTEGER}, #{cvPersonalSkill,jdbcType=LONGVARCHAR}, #{cvHopeCareer,jdbcType=LONGVARCHAR}, 
+      #{cvWorkExp,jdbcType=LONGVARCHAR}, #{cvProjectExp,jdbcType=LONGVARCHAR}, #{cvStudyExp,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.CVWithBLOBs" >
+    insert into cv_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cvId != null" >
+        cv_id,
+      </if>
+      <if test="cvUid != null" >
+        cv_uid,
+      </if>
+      <if test="cvFullName != null" >
+        cv_full_name,
+      </if>
+      <if test="cvSex != null" >
+        cv_sex,
+      </if>
+      <if test="cvPhone != null" >
+        cv_phone,
+      </if>
+      <if test="cvBirth != null" >
+        cv_birth,
+      </if>
+      <if test="cvEmail != null" >
+        cv_email,
+      </if>
+      <if test="cvWxid != null" >
+        cv_wxid,
+      </if>
+      <if test="cvCreateTime != null" >
+        cv_create_time,
+      </if>
+      <if test="cvStatus != null" >
+        cv_status,
+      </if>
+      <if test="cvPersonalSkill != null" >
+        cv_personal_skill,
+      </if>
+      <if test="cvHopeCareer != null" >
+        cv_hope_career,
+      </if>
+      <if test="cvWorkExp != null" >
+        cv_work_exp,
+      </if>
+      <if test="cvProjectExp != null" >
+        cv_project_exp,
+      </if>
+      <if test="cvStudyExp != null" >
+        cv_study_exp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cvId != null" >
+        #{cvId,jdbcType=INTEGER},
+      </if>
+      <if test="cvUid != null" >
+        #{cvUid,jdbcType=INTEGER},
+      </if>
+      <if test="cvFullName != null" >
+        #{cvFullName,jdbcType=CHAR},
+      </if>
+      <if test="cvSex != null" >
+        #{cvSex,jdbcType=INTEGER},
+      </if>
+      <if test="cvPhone != null" >
+        #{cvPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cvBirth != null" >
+        #{cvBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="cvEmail != null" >
+        #{cvEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cvWxid != null" >
+        #{cvWxid,jdbcType=INTEGER},
+      </if>
+      <if test="cvCreateTime != null" >
+        #{cvCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cvStatus != null" >
+        #{cvStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cvPersonalSkill != null" >
+        #{cvPersonalSkill,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvHopeCareer != null" >
+        #{cvHopeCareer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvWorkExp != null" >
+        #{cvWorkExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvProjectExp != null" >
+        #{cvProjectExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvStudyExp != null" >
+        #{cvStudyExp,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lwl.bosshire.pojo.CVExample" resultType="java.lang.Integer" >
+    select count(*) from cv_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cv_inf
+    <set >
+      <if test="record.cvId != null" >
+        cv_id = #{record.cvId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cvUid != null" >
+        cv_uid = #{record.cvUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cvFullName != null" >
+        cv_full_name = #{record.cvFullName,jdbcType=CHAR},
+      </if>
+      <if test="record.cvSex != null" >
+        cv_sex = #{record.cvSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.cvPhone != null" >
+        cv_phone = #{record.cvPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cvBirth != null" >
+        cv_birth = #{record.cvBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cvEmail != null" >
+        cv_email = #{record.cvEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cvWxid != null" >
+        cv_wxid = #{record.cvWxid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cvCreateTime != null" >
+        cv_create_time = #{record.cvCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cvStatus != null" >
+        cv_status = #{record.cvStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.cvPersonalSkill != null" >
+        cv_personal_skill = #{record.cvPersonalSkill,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.cvHopeCareer != null" >
+        cv_hope_career = #{record.cvHopeCareer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.cvWorkExp != null" >
+        cv_work_exp = #{record.cvWorkExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.cvProjectExp != null" >
+        cv_project_exp = #{record.cvProjectExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.cvStudyExp != null" >
+        cv_study_exp = #{record.cvStudyExp,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cv_inf
+    set cv_id = #{record.cvId,jdbcType=INTEGER},
+      cv_uid = #{record.cvUid,jdbcType=INTEGER},
+      cv_full_name = #{record.cvFullName,jdbcType=CHAR},
+      cv_sex = #{record.cvSex,jdbcType=INTEGER},
+      cv_phone = #{record.cvPhone,jdbcType=VARCHAR},
+      cv_birth = #{record.cvBirth,jdbcType=VARCHAR},
+      cv_email = #{record.cvEmail,jdbcType=VARCHAR},
+      cv_wxid = #{record.cvWxid,jdbcType=INTEGER},
+      cv_create_time = #{record.cvCreateTime,jdbcType=TIMESTAMP},
+      cv_status = #{record.cvStatus,jdbcType=INTEGER},
+      cv_personal_skill = #{record.cvPersonalSkill,jdbcType=LONGVARCHAR},
+      cv_hope_career = #{record.cvHopeCareer,jdbcType=LONGVARCHAR},
+      cv_work_exp = #{record.cvWorkExp,jdbcType=LONGVARCHAR},
+      cv_project_exp = #{record.cvProjectExp,jdbcType=LONGVARCHAR},
+      cv_study_exp = #{record.cvStudyExp,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cv_inf
+    set cv_id = #{record.cvId,jdbcType=INTEGER},
+      cv_uid = #{record.cvUid,jdbcType=INTEGER},
+      cv_full_name = #{record.cvFullName,jdbcType=CHAR},
+      cv_sex = #{record.cvSex,jdbcType=INTEGER},
+      cv_phone = #{record.cvPhone,jdbcType=VARCHAR},
+      cv_birth = #{record.cvBirth,jdbcType=VARCHAR},
+      cv_email = #{record.cvEmail,jdbcType=VARCHAR},
+      cv_wxid = #{record.cvWxid,jdbcType=INTEGER},
+      cv_create_time = #{record.cvCreateTime,jdbcType=TIMESTAMP},
+      cv_status = #{record.cvStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwl.bosshire.pojo.CVWithBLOBs" >
+    update cv_inf
+    <set >
+      <if test="cvUid != null" >
+        cv_uid = #{cvUid,jdbcType=INTEGER},
+      </if>
+      <if test="cvFullName != null" >
+        cv_full_name = #{cvFullName,jdbcType=CHAR},
+      </if>
+      <if test="cvSex != null" >
+        cv_sex = #{cvSex,jdbcType=INTEGER},
+      </if>
+      <if test="cvPhone != null" >
+        cv_phone = #{cvPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cvBirth != null" >
+        cv_birth = #{cvBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="cvEmail != null" >
+        cv_email = #{cvEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cvWxid != null" >
+        cv_wxid = #{cvWxid,jdbcType=INTEGER},
+      </if>
+      <if test="cvCreateTime != null" >
+        cv_create_time = #{cvCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cvStatus != null" >
+        cv_status = #{cvStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cvPersonalSkill != null" >
+        cv_personal_skill = #{cvPersonalSkill,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvHopeCareer != null" >
+        cv_hope_career = #{cvHopeCareer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvWorkExp != null" >
+        cv_work_exp = #{cvWorkExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvProjectExp != null" >
+        cv_project_exp = #{cvProjectExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cvStudyExp != null" >
+        cv_study_exp = #{cvStudyExp,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cv_id = #{cvId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lwl.bosshire.pojo.CVWithBLOBs" >
+    update cv_inf
+    set cv_uid = #{cvUid,jdbcType=INTEGER},
+      cv_full_name = #{cvFullName,jdbcType=CHAR},
+      cv_sex = #{cvSex,jdbcType=INTEGER},
+      cv_phone = #{cvPhone,jdbcType=VARCHAR},
+      cv_birth = #{cvBirth,jdbcType=VARCHAR},
+      cv_email = #{cvEmail,jdbcType=VARCHAR},
+      cv_wxid = #{cvWxid,jdbcType=INTEGER},
+      cv_create_time = #{cvCreateTime,jdbcType=TIMESTAMP},
+      cv_status = #{cvStatus,jdbcType=INTEGER},
+      cv_personal_skill = #{cvPersonalSkill,jdbcType=LONGVARCHAR},
+      cv_hope_career = #{cvHopeCareer,jdbcType=LONGVARCHAR},
+      cv_work_exp = #{cvWorkExp,jdbcType=LONGVARCHAR},
+      cv_project_exp = #{cvProjectExp,jdbcType=LONGVARCHAR},
+      cv_study_exp = #{cvStudyExp,jdbcType=LONGVARCHAR}
+    where cv_id = #{cvId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.CV" >
+    update cv_inf
+    set cv_uid = #{cvUid,jdbcType=INTEGER},
+      cv_full_name = #{cvFullName,jdbcType=CHAR},
+      cv_sex = #{cvSex,jdbcType=INTEGER},
+      cv_phone = #{cvPhone,jdbcType=VARCHAR},
+      cv_birth = #{cvBirth,jdbcType=VARCHAR},
+      cv_email = #{cvEmail,jdbcType=VARCHAR},
+      cv_wxid = #{cvWxid,jdbcType=INTEGER},
+      cv_create_time = #{cvCreateTime,jdbcType=TIMESTAMP},
+      cv_status = #{cvStatus,jdbcType=INTEGER}
+    where cv_id = #{cvId,jdbcType=INTEGER}
+  </update>
+</mapper>

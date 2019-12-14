@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lwl.bosshire.dao.ResumeMapper" >
-  <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.Resume" >
-    <result column="resume_id" property="resumeId" jdbcType="INTEGER" />
-    <result column="resume_content" property="resumeContent" jdbcType="VARCHAR" />
-    <result column="resume_user" property="resumeUser" jdbcType="INTEGER" />
+<mapper namespace="com.lwl.bosshire.dao.ImageMapper" >
+  <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.Image" >
+    <id column="image_id" property="imageId" jdbcType="CHAR" />
+    <result column="content_type" property="contentType" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    resume_id, resume_content, resume_user
+    image_id, content_type, path
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.ResumeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.ImageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from resume
+    from image_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,60 +81,70 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.lwl.bosshire.pojo.ResumeExample" >
-    delete from resume
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from image_inf
+    where image_id = #{imageId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from image_inf
+    where image_id = #{imageId,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lwl.bosshire.pojo.ImageExample" >
+    delete from image_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.lwl.bosshire.pojo.Resume" >
-    insert into resume (resume_id, resume_content, resume_user
+  <insert id="insert" parameterType="com.lwl.bosshire.pojo.Image" >
+    insert into image_inf (image_id, content_type, path
       )
-    values (#{resumeId,jdbcType=INTEGER}, #{resumeContent,jdbcType=VARCHAR}, #{resumeUser,jdbcType=INTEGER}
+    values (#{imageId,jdbcType=CHAR}, #{contentType,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.Resume" >
-    insert into resume
+  <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.Image" >
+    insert into image_inf
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="resumeId != null" >
-        resume_id,
+      <if test="imageId != null" >
+        image_id,
       </if>
-      <if test="resumeContent != null" >
-        resume_content,
+      <if test="contentType != null" >
+        content_type,
       </if>
-      <if test="resumeUser != null" >
-        resume_user,
+      <if test="path != null" >
+        path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="resumeId != null" >
-        #{resumeId,jdbcType=INTEGER},
+      <if test="imageId != null" >
+        #{imageId,jdbcType=CHAR},
       </if>
-      <if test="resumeContent != null" >
-        #{resumeContent,jdbcType=VARCHAR},
+      <if test="contentType != null" >
+        #{contentType,jdbcType=VARCHAR},
       </if>
-      <if test="resumeUser != null" >
-        #{resumeUser,jdbcType=INTEGER},
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.lwl.bosshire.pojo.ResumeExample" resultType="java.lang.Integer" >
-    select count(*) from resume
+  <select id="countByExample" parameterType="com.lwl.bosshire.pojo.ImageExample" resultType="java.lang.Integer" >
+    select count(*) from image_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update resume
+    update image_inf
     <set >
-      <if test="record.resumeId != null" >
-        resume_id = #{record.resumeId,jdbcType=INTEGER},
+      <if test="record.imageId != null" >
+        image_id = #{record.imageId,jdbcType=CHAR},
       </if>
-      <if test="record.resumeContent != null" >
-        resume_content = #{record.resumeContent,jdbcType=VARCHAR},
+      <if test="record.contentType != null" >
+        content_type = #{record.contentType,jdbcType=VARCHAR},
       </if>
-      <if test="record.resumeUser != null" >
-        resume_user = #{record.resumeUser,jdbcType=INTEGER},
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,12 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update resume
-    set resume_id = #{record.resumeId,jdbcType=INTEGER},
-      resume_content = #{record.resumeContent,jdbcType=VARCHAR},
-      resume_user = #{record.resumeUser,jdbcType=INTEGER}
+    update image_inf
+    set image_id = #{record.imageId,jdbcType=CHAR},
+      content_type = #{record.contentType,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwl.bosshire.pojo.Image" >
+    update image_inf
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where image_id = #{imageId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.Image" >
+    update image_inf
+    set content_type = #{contentType,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR}
+    where image_id = #{imageId,jdbcType=CHAR}
   </update>
 </mapper>

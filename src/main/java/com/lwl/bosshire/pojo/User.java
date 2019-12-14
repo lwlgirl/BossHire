@@ -1,31 +1,19 @@
 package com.lwl.bosshire.pojo;
 
-import java.util.Date;
-
 public class User {
     private Integer userId;
 
-    private String userName;
+    private String phone;
 
-    private String userAddress;
+    private String email;
 
-    private Date userGraduateTime;
+    private String password;
 
-    private String educationBackground;
+    private String nickname;
 
-    private String major;
+    private Integer role;
 
-    private Date enrollmentYear;
-
-    private String associationActivity;
-
-    private String expectedCareer;
-
-    private String expectedCity;
-
-    private String personalAdvantage;
-
-    private String userPassword;
+    private Integer status;
 
     public Integer getUserId() {
         return userId;
@@ -35,91 +23,51 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress == null ? null : userAddress.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
-    public Date getUserGraduateTime() {
-        return userGraduateTime;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserGraduateTime(Date userGraduateTime) {
-        this.userGraduateTime = userGraduateTime;
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getEducationBackground() {
-        return educationBackground;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setEducationBackground(String educationBackground) {
-        this.educationBackground = educationBackground == null ? null : educationBackground.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    public String getMajor() {
-        return major;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setMajor(String major) {
-        this.major = major == null ? null : major.trim();
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
-    public Date getEnrollmentYear() {
-        return enrollmentYear;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setEnrollmentYear(Date enrollmentYear) {
-        this.enrollmentYear = enrollmentYear;
-    }
-
-    public String getAssociationActivity() {
-        return associationActivity;
-    }
-
-    public void setAssociationActivity(String associationActivity) {
-        this.associationActivity = associationActivity == null ? null : associationActivity.trim();
-    }
-
-    public String getExpectedCareer() {
-        return expectedCareer;
-    }
-
-    public void setExpectedCareer(String expectedCareer) {
-        this.expectedCareer = expectedCareer == null ? null : expectedCareer.trim();
-    }
-
-    public String getExpectedCity() {
-        return expectedCity;
-    }
-
-    public void setExpectedCity(String expectedCity) {
-        this.expectedCity = expectedCity == null ? null : expectedCity.trim();
-    }
-
-    public String getPersonalAdvantage() {
-        return personalAdvantage;
-    }
-
-    public void setPersonalAdvantage(String personalAdvantage) {
-        this.personalAdvantage = personalAdvantage == null ? null : personalAdvantage.trim();
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword == null ? null : userPassword.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

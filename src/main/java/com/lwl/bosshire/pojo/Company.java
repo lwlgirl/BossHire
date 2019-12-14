@@ -1,17 +1,30 @@
 package com.lwl.bosshire.pojo;
 
+import lombok.Builder;
+
+import java.util.Date;
+
+@Builder
 public class Company {
     private Integer companyId;
 
     private String companyName;
 
-    private String companyDescribe;
+    private String companyLogoImage;
+
+    private Integer companyEmpNum;
+
+    private String companySimpleDesc;
+
+    private String companyDesc;
 
     private String companyAddress;
 
-    private String companyLeader;
+    private Date companyEstablishedTime;
 
-    private String companyCareer;
+    private Integer companyUid;
+
+    public Company() {}
 
     public Integer getCompanyId() {
         return companyId;
@@ -29,12 +42,36 @@ public class Company {
         this.companyName = companyName == null ? null : companyName.trim();
     }
 
-    public String getCompanyDescribe() {
-        return companyDescribe;
+    public String getCompanyLogoImage() {
+        return companyLogoImage;
     }
 
-    public void setCompanyDescribe(String companyDescribe) {
-        this.companyDescribe = companyDescribe == null ? null : companyDescribe.trim();
+    public void setCompanyLogoImage(String companyLogoImage) {
+        this.companyLogoImage = companyLogoImage == null ? null : companyLogoImage.trim();
+    }
+
+    public Integer getCompanyEmpNum() {
+        return companyEmpNum;
+    }
+
+    public void setCompanyEmpNum(Integer companyEmpNum) {
+        this.companyEmpNum = companyEmpNum;
+    }
+
+    public String getCompanySimpleDesc() {
+        return companySimpleDesc;
+    }
+
+    public void setCompanySimpleDesc(String companySimpleDesc) {
+        this.companySimpleDesc = companySimpleDesc == null ? null : companySimpleDesc.trim();
+    }
+
+    public String getCompanyDesc() {
+        return companyDesc;
+    }
+
+    public void setCompanyDesc(String companyDesc) {
+        this.companyDesc = companyDesc == null ? null : companyDesc.trim();
     }
 
     public String getCompanyAddress() {
@@ -45,19 +82,19 @@ public class Company {
         this.companyAddress = companyAddress == null ? null : companyAddress.trim();
     }
 
-    public String getCompanyLeader() {
-        return companyLeader;
+    public Date getCompanyEstablishedTime() {
+        return companyEstablishedTime;
     }
 
-    public void setCompanyLeader(String companyLeader) {
-        this.companyLeader = companyLeader == null ? null : companyLeader.trim();
+    public void setCompanyEstablishedTime(Date companyEstablishedTime) {
+        this.companyEstablishedTime = companyEstablishedTime;
     }
 
-    public String getCompanyCareer() {
-        return companyCareer;
+    public Integer getCompanyUid() {
+        return companyUid;
     }
 
-    public void setCompanyCareer(String companyCareer) {
-        this.companyCareer = companyCareer == null ? null : companyCareer.trim();
+    public void setCompanyUid(Integer companyUid) {
+        this.companyUid = companyUid;
     }
 }

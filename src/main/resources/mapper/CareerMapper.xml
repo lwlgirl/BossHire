@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lwl.bosshire.dao.CareerMapper" >
   <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.Career" >
-    <result column="career_id" property="careerId" jdbcType="INTEGER" />
+    <id column="career_id" property="careerId" jdbcType="INTEGER" />
     <result column="career_name" property="careerName" jdbcType="VARCHAR" />
-    <result column="career_describe" property="careerDescribe" jdbcType="VARCHAR" />
-    <result column="career_requirement" property="careerRequirement" jdbcType="VARCHAR" />
+    <result column="career_type" property="careerType" jdbcType="INTEGER" />
     <result column="career_salary_min" property="careerSalaryMin" jdbcType="INTEGER" />
     <result column="career_salary_max" property="careerSalaryMax" jdbcType="INTEGER" />
-    <result column="career_company" property="careerCompany" jdbcType="INTEGER" />
-    <result column="career_advantage" property="careerAdvantage" jdbcType="VARCHAR" />
+    <result column="career_company_id" property="careerCompanyId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lwl.bosshire.pojo.Career" extends="BaseResultMap" >
+    <result column="career_salary_desc" property="careerSalaryDesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,16 +71,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    career_id, career_name, career_describe, career_requirement, career_salary_min, career_salary_max, 
-    career_company, career_advantage
+    career_id, career_name, career_type, career_salary_min, career_salary_max, career_company_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.CareerExample" >
+  <sql id="Blob_Column_List" >
+    career_salary_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lwl.bosshire.pojo.CareerExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from career
+    ,
+    <include refid="Blob_Column_List" />
+    from career_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,22 +92,48 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.CareerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from career_inf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from career_inf
+    where career_id = #{careerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from career_inf
+    where career_id = #{careerId,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.lwl.bosshire.pojo.CareerExample" >
-    delete from career
+    delete from career_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.lwl.bosshire.pojo.Career" >
-    insert into career (career_id, career_name, career_describe, 
-      career_requirement, career_salary_min, career_salary_max, 
-      career_company, career_advantage)
-    values (#{careerId,jdbcType=INTEGER}, #{careerName,jdbcType=VARCHAR}, #{careerDescribe,jdbcType=VARCHAR}, 
-      #{careerRequirement,jdbcType=VARCHAR}, #{careerSalaryMin,jdbcType=INTEGER}, #{careerSalaryMax,jdbcType=INTEGER}, 
-      #{careerCompany,jdbcType=INTEGER}, #{careerAdvantage,jdbcType=VARCHAR})
+    insert into career_inf (career_id, career_name, career_type, 
+      career_salary_min, career_salary_max, career_company_id, 
+      career_salary_desc)
+    values (#{careerId,jdbcType=INTEGER}, #{careerName,jdbcType=VARCHAR}, #{careerType,jdbcType=INTEGER}, 
+      #{careerSalaryMin,jdbcType=INTEGER}, #{careerSalaryMax,jdbcType=INTEGER}, #{careerCompanyId,jdbcType=INTEGER}, 
+      #{careerSalaryDesc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.Career" >
-    insert into career
+    insert into career_inf
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="careerId != null" >
         career_id,
@@ -110,11 +141,8 @@
       <if test="careerName != null" >
         career_name,
       </if>
-      <if test="careerDescribe != null" >
-        career_describe,
-      </if>
-      <if test="careerRequirement != null" >
-        career_requirement,
+      <if test="careerType != null" >
+        career_type,
       </if>
       <if test="careerSalaryMin != null" >
         career_salary_min,
@@ -122,11 +150,11 @@
       <if test="careerSalaryMax != null" >
         career_salary_max,
       </if>
-      <if test="careerCompany != null" >
-        career_company,
+      <if test="careerCompanyId != null" >
+        career_company_id,
       </if>
-      <if test="careerAdvantage != null" >
-        career_advantage,
+      <if test="careerSalaryDesc != null" >
+        career_salary_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -136,11 +164,8 @@
       <if test="careerName != null" >
         #{careerName,jdbcType=VARCHAR},
       </if>
-      <if test="careerDescribe != null" >
-        #{careerDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="careerRequirement != null" >
-        #{careerRequirement,jdbcType=VARCHAR},
+      <if test="careerType != null" >
+        #{careerType,jdbcType=INTEGER},
       </if>
       <if test="careerSalaryMin != null" >
         #{careerSalaryMin,jdbcType=INTEGER},
@@ -148,22 +173,22 @@
       <if test="careerSalaryMax != null" >
         #{careerSalaryMax,jdbcType=INTEGER},
       </if>
-      <if test="careerCompany != null" >
-        #{careerCompany,jdbcType=INTEGER},
+      <if test="careerCompanyId != null" >
+        #{careerCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="careerAdvantage != null" >
-        #{careerAdvantage,jdbcType=VARCHAR},
+      <if test="careerSalaryDesc != null" >
+        #{careerSalaryDesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.lwl.bosshire.pojo.CareerExample" resultType="java.lang.Integer" >
-    select count(*) from career
+    select count(*) from career_inf
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update career
+    update career_inf
     <set >
       <if test="record.careerId != null" >
         career_id = #{record.careerId,jdbcType=INTEGER},
@@ -171,11 +196,8 @@
       <if test="record.careerName != null" >
         career_name = #{record.careerName,jdbcType=VARCHAR},
       </if>
-      <if test="record.careerDescribe != null" >
-        career_describe = #{record.careerDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.careerRequirement != null" >
-        career_requirement = #{record.careerRequirement,jdbcType=VARCHAR},
+      <if test="record.careerType != null" >
+        career_type = #{record.careerType,jdbcType=INTEGER},
       </if>
       <if test="record.careerSalaryMin != null" >
         career_salary_min = #{record.careerSalaryMin,jdbcType=INTEGER},
@@ -183,29 +205,83 @@
       <if test="record.careerSalaryMax != null" >
         career_salary_max = #{record.careerSalaryMax,jdbcType=INTEGER},
       </if>
-      <if test="record.careerCompany != null" >
-        career_company = #{record.careerCompany,jdbcType=INTEGER},
+      <if test="record.careerCompanyId != null" >
+        career_company_id = #{record.careerCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="record.careerAdvantage != null" >
-        career_advantage = #{record.careerAdvantage,jdbcType=VARCHAR},
+      <if test="record.careerSalaryDesc != null" >
+        career_salary_desc = #{record.careerSalaryDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
-    update career
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update career_inf
     set career_id = #{record.careerId,jdbcType=INTEGER},
       career_name = #{record.careerName,jdbcType=VARCHAR},
-      career_describe = #{record.careerDescribe,jdbcType=VARCHAR},
-      career_requirement = #{record.careerRequirement,jdbcType=VARCHAR},
+      career_type = #{record.careerType,jdbcType=INTEGER},
       career_salary_min = #{record.careerSalaryMin,jdbcType=INTEGER},
       career_salary_max = #{record.careerSalaryMax,jdbcType=INTEGER},
-      career_company = #{record.careerCompany,jdbcType=INTEGER},
-      career_advantage = #{record.careerAdvantage,jdbcType=VARCHAR}
+      career_company_id = #{record.careerCompanyId,jdbcType=INTEGER},
+      career_salary_desc = #{record.careerSalaryDesc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update career_inf
+    set career_id = #{record.careerId,jdbcType=INTEGER},
+      career_name = #{record.careerName,jdbcType=VARCHAR},
+      career_type = #{record.careerType,jdbcType=INTEGER},
+      career_salary_min = #{record.careerSalaryMin,jdbcType=INTEGER},
+      career_salary_max = #{record.careerSalaryMax,jdbcType=INTEGER},
+      career_company_id = #{record.careerCompanyId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lwl.bosshire.pojo.Career" >
+    update career_inf
+    <set >
+      <if test="careerName != null" >
+        career_name = #{careerName,jdbcType=VARCHAR},
+      </if>
+      <if test="careerType != null" >
+        career_type = #{careerType,jdbcType=INTEGER},
+      </if>
+      <if test="careerSalaryMin != null" >
+        career_salary_min = #{careerSalaryMin,jdbcType=INTEGER},
+      </if>
+      <if test="careerSalaryMax != null" >
+        career_salary_max = #{careerSalaryMax,jdbcType=INTEGER},
+      </if>
+      <if test="careerCompanyId != null" >
+        career_company_id = #{careerCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="careerSalaryDesc != null" >
+        career_salary_desc = #{careerSalaryDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where career_id = #{careerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lwl.bosshire.pojo.Career" >
+    update career_inf
+    set career_name = #{careerName,jdbcType=VARCHAR},
+      career_type = #{careerType,jdbcType=INTEGER},
+      career_salary_min = #{careerSalaryMin,jdbcType=INTEGER},
+      career_salary_max = #{careerSalaryMax,jdbcType=INTEGER},
+      career_company_id = #{careerCompanyId,jdbcType=INTEGER},
+      career_salary_desc = #{careerSalaryDesc,jdbcType=LONGVARCHAR}
+    where career_id = #{careerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.Career" >
+    update career_inf
+    set career_name = #{careerName,jdbcType=VARCHAR},
+      career_type = #{careerType,jdbcType=INTEGER},
+      career_salary_min = #{careerSalaryMin,jdbcType=INTEGER},
+      career_salary_max = #{careerSalaryMax,jdbcType=INTEGER},
+      career_company_id = #{careerCompanyId,jdbcType=INTEGER}
+    where career_id = #{careerId,jdbcType=INTEGER}
   </update>
 </mapper>

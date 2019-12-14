@@ -20,18 +20,23 @@ import static com.lwl.bosshire.common.ResponseMessage.buildString;
 public class RegisterServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String user = req.getParameter("username");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String user = req.getParameter("phone");
         String pass = req.getParameter("password");
+        String role = req.getParameter("role");
+        String nick = req.getParameter("nick");
 
-        if(user == null || pass == null) {
+        if(user == null || pass == null || role == null || nick == null) {
             resp.sendError(400);
             return;
         }
 
         User u = new User();
-        u.setUserName(user);
-        u.setUserPassword(pass);
+        u.setPhone(user);
+        u.setPassword(pass);
+        u.setRole(Integer.parseInt(role));
+        u.setNickname(nick);
+        u.setStatus(0);
 
         PrintWriter pw = resp.getWriter();
         try {

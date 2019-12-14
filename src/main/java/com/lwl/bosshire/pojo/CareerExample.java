@@ -234,143 +234,63 @@ public class CareerExample {
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeIsNull() {
-            addCriterion("career_describe is null");
+        public Criteria andCareerTypeIsNull() {
+            addCriterion("career_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeIsNotNull() {
-            addCriterion("career_describe is not null");
+        public Criteria andCareerTypeIsNotNull() {
+            addCriterion("career_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeEqualTo(String value) {
-            addCriterion("career_describe =", value, "careerDescribe");
+        public Criteria andCareerTypeEqualTo(Integer value) {
+            addCriterion("career_type =", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeNotEqualTo(String value) {
-            addCriterion("career_describe <>", value, "careerDescribe");
+        public Criteria andCareerTypeNotEqualTo(Integer value) {
+            addCriterion("career_type <>", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeGreaterThan(String value) {
-            addCriterion("career_describe >", value, "careerDescribe");
+        public Criteria andCareerTypeGreaterThan(Integer value) {
+            addCriterion("career_type >", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeGreaterThanOrEqualTo(String value) {
-            addCriterion("career_describe >=", value, "careerDescribe");
+        public Criteria andCareerTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("career_type >=", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeLessThan(String value) {
-            addCriterion("career_describe <", value, "careerDescribe");
+        public Criteria andCareerTypeLessThan(Integer value) {
+            addCriterion("career_type <", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeLessThanOrEqualTo(String value) {
-            addCriterion("career_describe <=", value, "careerDescribe");
+        public Criteria andCareerTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("career_type <=", value, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeLike(String value) {
-            addCriterion("career_describe like", value, "careerDescribe");
+        public Criteria andCareerTypeIn(List<Integer> values) {
+            addCriterion("career_type in", values, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeNotLike(String value) {
-            addCriterion("career_describe not like", value, "careerDescribe");
+        public Criteria andCareerTypeNotIn(List<Integer> values) {
+            addCriterion("career_type not in", values, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeIn(List<String> values) {
-            addCriterion("career_describe in", values, "careerDescribe");
+        public Criteria andCareerTypeBetween(Integer value1, Integer value2) {
+            addCriterion("career_type between", value1, value2, "careerType");
             return (Criteria) this;
         }
 
-        public Criteria andCareerDescribeNotIn(List<String> values) {
-            addCriterion("career_describe not in", values, "careerDescribe");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerDescribeBetween(String value1, String value2) {
-            addCriterion("career_describe between", value1, value2, "careerDescribe");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerDescribeNotBetween(String value1, String value2) {
-            addCriterion("career_describe not between", value1, value2, "careerDescribe");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementIsNull() {
-            addCriterion("career_requirement is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementIsNotNull() {
-            addCriterion("career_requirement is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementEqualTo(String value) {
-            addCriterion("career_requirement =", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementNotEqualTo(String value) {
-            addCriterion("career_requirement <>", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementGreaterThan(String value) {
-            addCriterion("career_requirement >", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementGreaterThanOrEqualTo(String value) {
-            addCriterion("career_requirement >=", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementLessThan(String value) {
-            addCriterion("career_requirement <", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementLessThanOrEqualTo(String value) {
-            addCriterion("career_requirement <=", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementLike(String value) {
-            addCriterion("career_requirement like", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementNotLike(String value) {
-            addCriterion("career_requirement not like", value, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementIn(List<String> values) {
-            addCriterion("career_requirement in", values, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementNotIn(List<String> values) {
-            addCriterion("career_requirement not in", values, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementBetween(String value1, String value2) {
-            addCriterion("career_requirement between", value1, value2, "careerRequirement");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerRequirementNotBetween(String value1, String value2) {
-            addCriterion("career_requirement not between", value1, value2, "careerRequirement");
+        public Criteria andCareerTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("career_type not between", value1, value2, "careerType");
             return (Criteria) this;
         }
 
@@ -494,133 +414,63 @@ public class CareerExample {
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyIsNull() {
-            addCriterion("career_company is null");
+        public Criteria andCareerCompanyIdIsNull() {
+            addCriterion("career_company_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyIsNotNull() {
-            addCriterion("career_company is not null");
+        public Criteria andCareerCompanyIdIsNotNull() {
+            addCriterion("career_company_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyEqualTo(Integer value) {
-            addCriterion("career_company =", value, "careerCompany");
+        public Criteria andCareerCompanyIdEqualTo(Integer value) {
+            addCriterion("career_company_id =", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyNotEqualTo(Integer value) {
-            addCriterion("career_company <>", value, "careerCompany");
+        public Criteria andCareerCompanyIdNotEqualTo(Integer value) {
+            addCriterion("career_company_id <>", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyGreaterThan(Integer value) {
-            addCriterion("career_company >", value, "careerCompany");
+        public Criteria andCareerCompanyIdGreaterThan(Integer value) {
+            addCriterion("career_company_id >", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyGreaterThanOrEqualTo(Integer value) {
-            addCriterion("career_company >=", value, "careerCompany");
+        public Criteria andCareerCompanyIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("career_company_id >=", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyLessThan(Integer value) {
-            addCriterion("career_company <", value, "careerCompany");
+        public Criteria andCareerCompanyIdLessThan(Integer value) {
+            addCriterion("career_company_id <", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyLessThanOrEqualTo(Integer value) {
-            addCriterion("career_company <=", value, "careerCompany");
+        public Criteria andCareerCompanyIdLessThanOrEqualTo(Integer value) {
+            addCriterion("career_company_id <=", value, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyIn(List<Integer> values) {
-            addCriterion("career_company in", values, "careerCompany");
+        public Criteria andCareerCompanyIdIn(List<Integer> values) {
+            addCriterion("career_company_id in", values, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyNotIn(List<Integer> values) {
-            addCriterion("career_company not in", values, "careerCompany");
+        public Criteria andCareerCompanyIdNotIn(List<Integer> values) {
+            addCriterion("career_company_id not in", values, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyBetween(Integer value1, Integer value2) {
-            addCriterion("career_company between", value1, value2, "careerCompany");
+        public Criteria andCareerCompanyIdBetween(Integer value1, Integer value2) {
+            addCriterion("career_company_id between", value1, value2, "careerCompanyId");
             return (Criteria) this;
         }
 
-        public Criteria andCareerCompanyNotBetween(Integer value1, Integer value2) {
-            addCriterion("career_company not between", value1, value2, "careerCompany");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageIsNull() {
-            addCriterion("career_advantage is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageIsNotNull() {
-            addCriterion("career_advantage is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageEqualTo(String value) {
-            addCriterion("career_advantage =", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageNotEqualTo(String value) {
-            addCriterion("career_advantage <>", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageGreaterThan(String value) {
-            addCriterion("career_advantage >", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageGreaterThanOrEqualTo(String value) {
-            addCriterion("career_advantage >=", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageLessThan(String value) {
-            addCriterion("career_advantage <", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageLessThanOrEqualTo(String value) {
-            addCriterion("career_advantage <=", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageLike(String value) {
-            addCriterion("career_advantage like", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageNotLike(String value) {
-            addCriterion("career_advantage not like", value, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageIn(List<String> values) {
-            addCriterion("career_advantage in", values, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageNotIn(List<String> values) {
-            addCriterion("career_advantage not in", values, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageBetween(String value1, String value2) {
-            addCriterion("career_advantage between", value1, value2, "careerAdvantage");
-            return (Criteria) this;
-        }
-
-        public Criteria andCareerAdvantageNotBetween(String value1, String value2) {
-            addCriterion("career_advantage not between", value1, value2, "careerAdvantage");
+        public Criteria andCareerCompanyIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("career_company_id not between", value1, value2, "careerCompanyId");
             return (Criteria) this;
         }
     }
