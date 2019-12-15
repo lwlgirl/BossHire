@@ -7,6 +7,7 @@ import com.lwl.bosshire.pojo.Company;
 import com.lwl.bosshire.pojo.CompanyExample;
 import com.lwl.bosshire.pojo.User;
 import com.lwl.bosshire.utils.UserContext;
+import lombok.extern.log4j.Log4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import static com.lwl.bosshire.common.ResponseMessage.*;
+
 /**
  * @author lizifan 695199262@qq.com
  * @since 2019.12.14 20:17
  */
+@Log4j
 @WebServlet("/api/company/info/update")
 public class UpdateCompanyInfoServlet extends HttpServlet {
 
@@ -29,8 +33,8 @@ public class UpdateCompanyInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserContext.get();
-        if(user.getRole() != Role.HR.val()) {
-            resp.sendError(400);
+        if(user == null || user.getRole() != Role.HR.val()) {
+            resp.sendError(403);
             return;
         }
 
@@ -57,7 +61,26 @@ public class UpdateCompanyInfoServlet extends HttpServlet {
             throw new ServletException(e);
         }
 
-        CompanyMapper cm = DataSourceUtils.getMapper(CompanyMapper.class);
-        cm.insert(c);
+        try {
+            CompanyMapper cm = DataSourceUtils.getMapper(CompanyMapper.class);
+            CompanyExample ce = new CompanyExample();
+            ce.createCriteria().andCompanyUidEqualTo(user.getUserId());
+            int cnt = cm.countByExample(ce);
+            if (cnt == 0) {
+                cm.updateByExampleSelective(c, ce);
+            } else {
+                cm.insertSelective(c);
+            }
+            DataSourceUtils.commit();
+        } catch (RuntimeException e) {
+            log.error(e);
+            DataSourceUtils.rollback();
+            resp.sendError(500);
+            return;
+        } finally {
+            DataSourceUtils.close();
+        }
+
+        resp.getWriter().write(buildString(0, "SUCCESS"));
     }
 }

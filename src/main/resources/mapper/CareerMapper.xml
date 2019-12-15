@@ -10,7 +10,7 @@
     <result column="career_company_id" property="careerCompanyId" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.lwl.bosshire.pojo.Career" extends="BaseResultMap" >
-    <result column="career_salary_desc" property="careerSalaryDesc" jdbcType="LONGVARCHAR" />
+    <result column="career_desc" property="careerDesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +74,7 @@
     career_id, career_name, career_type, career_salary_min, career_salary_max, career_company_id
   </sql>
   <sql id="Blob_Column_List" >
-    career_salary_desc
+    career_desc
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.lwl.bosshire.pojo.CareerExample" >
     select
@@ -127,10 +127,10 @@
   <insert id="insert" parameterType="com.lwl.bosshire.pojo.Career" >
     insert into career_inf (career_id, career_name, career_type, 
       career_salary_min, career_salary_max, career_company_id, 
-      career_salary_desc)
+      career_desc)
     values (#{careerId,jdbcType=INTEGER}, #{careerName,jdbcType=VARCHAR}, #{careerType,jdbcType=INTEGER}, 
       #{careerSalaryMin,jdbcType=INTEGER}, #{careerSalaryMax,jdbcType=INTEGER}, #{careerCompanyId,jdbcType=INTEGER}, 
-      #{careerSalaryDesc,jdbcType=LONGVARCHAR})
+      #{careerDesc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.Career" >
     insert into career_inf
@@ -153,8 +153,8 @@
       <if test="careerCompanyId != null" >
         career_company_id,
       </if>
-      <if test="careerSalaryDesc != null" >
-        career_salary_desc,
+      <if test="careerDesc != null" >
+        career_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -176,8 +176,8 @@
       <if test="careerCompanyId != null" >
         #{careerCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="careerSalaryDesc != null" >
-        #{careerSalaryDesc,jdbcType=LONGVARCHAR},
+      <if test="careerDesc != null" >
+        #{careerDesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -208,8 +208,8 @@
       <if test="record.careerCompanyId != null" >
         career_company_id = #{record.careerCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="record.careerSalaryDesc != null" >
-        career_salary_desc = #{record.careerSalaryDesc,jdbcType=LONGVARCHAR},
+      <if test="record.careerDesc != null" >
+        career_desc = #{record.careerDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -224,7 +224,7 @@
       career_salary_min = #{record.careerSalaryMin,jdbcType=INTEGER},
       career_salary_max = #{record.careerSalaryMax,jdbcType=INTEGER},
       career_company_id = #{record.careerCompanyId,jdbcType=INTEGER},
-      career_salary_desc = #{record.careerSalaryDesc,jdbcType=LONGVARCHAR}
+      career_desc = #{record.careerDesc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,8 +259,8 @@
       <if test="careerCompanyId != null" >
         career_company_id = #{careerCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="careerSalaryDesc != null" >
-        career_salary_desc = #{careerSalaryDesc,jdbcType=LONGVARCHAR},
+      <if test="careerDesc != null" >
+        career_desc = #{careerDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where career_id = #{careerId,jdbcType=INTEGER}
@@ -272,7 +272,7 @@
       career_salary_min = #{careerSalaryMin,jdbcType=INTEGER},
       career_salary_max = #{careerSalaryMax,jdbcType=INTEGER},
       career_company_id = #{careerCompanyId,jdbcType=INTEGER},
-      career_salary_desc = #{careerSalaryDesc,jdbcType=LONGVARCHAR}
+      career_desc = #{careerDesc,jdbcType=LONGVARCHAR}
     where career_id = #{careerId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.Career" >
