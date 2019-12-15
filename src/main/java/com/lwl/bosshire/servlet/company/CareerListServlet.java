@@ -1,10 +1,8 @@
 package com.lwl.bosshire.servlet.company;
 
-import com.lwl.bosshire.common.Role;
-import com.lwl.bosshire.dao.CareerMapper;
-import com.lwl.bosshire.dao.CompanyMapper;
-import com.lwl.bosshire.pojo.*;
-import com.lwl.bosshire.utils.UserContext;
+import com.lwl.bosshire.common.ServiceResponse;
+import com.lwl.bosshire.service.company.CompanyBasicService;
+import com.lwl.bosshire.vo.CareerListVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
-import static com.lwl.bosshire.config.DataSourceUtils.*;
-import static com.lwl.bosshire.utils.CommonUtils.*;
+import static com.lwl.bosshire.common.ResponseMessage.*;
 
 /**
  * @author lizifan 695199262@qq.com
@@ -25,28 +22,17 @@ import static com.lwl.bosshire.utils.CommonUtils.*;
 @WebServlet("/api/company/career/list")
 public class CareerListServlet extends HttpServlet {
 
+    private final CompanyBasicService companyBasicService = CompanyBasicService.INSTANCE;
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = UserContext.get();
-        if(user == null || user.getRole() != Role.HR.val()) {
-            resp.sendError(403);
-            return;
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        ServiceResponse<CareerListVo> res = companyBasicService.companyCareerList();
+        if(!res.isSuccess()) {
+            pw.write(buildString(res.code(), "FAILURE"));
         }
 
-        CompanyMapper companyMapper = getMapper(CompanyMapper.class);
-        CompanyExample ce = new CompanyExample();
-        ce.createCriteria().andCompanyUidEqualTo(user.getUserId());
-        Company company = getFirst(companyMapper.selectByExample(ce));
-
-        if(company == null) {
-            return;
-        }
-
-        CareerMapper careerMapper = getMapper(CareerMapper.class);
-        CareerExample cae = new CareerExample();
-        cae.createCriteria().andCareerCompanyIdEqualTo(company.getCompanyId());
-        List<Career> career = careerMapper.selectByExample(cae);
-
-
+        pw.write(buildString(0, "SUCCESS", res.data()));
     }
 }

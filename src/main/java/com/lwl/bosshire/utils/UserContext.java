@@ -1,5 +1,6 @@
 package com.lwl.bosshire.utils;
 
+import com.lwl.bosshire.common.Role;
 import com.lwl.bosshire.pojo.User;
 
 /**
@@ -13,6 +14,11 @@ public final class UserContext {
 
     public static User get() {
         return context.get();
+    }
+
+    public static Role userRole() {
+        User user = get();
+        return user != null ? Role.valueOf(user.getRole()) : null;
     }
 
     public static void set(User user) {

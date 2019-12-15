@@ -12,4 +12,14 @@ public enum Role {
         return ordinal();
     }
 
+    public static Role valueOf(int val) {
+        if(val == 0) {
+            return JH;
+        } else if(val == 1) {
+            return HR;
+        }
+
+        return null;
+    }
+
 }

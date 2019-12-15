@@ -1,7 +1,10 @@
 package com.lwl.bosshire.servlet.auth;
 
+import com.lwl.bosshire.common.Role;
+import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.dao.UserMapper;
 import com.lwl.bosshire.pojo.User;
+import com.lwl.bosshire.service.user.UserBasicService;
 import lombok.extern.log4j.Log4j;
 
 import javax.servlet.ServletException;
@@ -18,6 +21,8 @@ import static com.lwl.bosshire.common.ResponseMessage.buildString;
 @Log4j
 @WebServlet("/api/user/register")
 public class RegisterServlet extends HttpServlet {
+
+    private final UserBasicService userBasicService = UserBasicService.INSTANCE;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -38,18 +43,13 @@ public class RegisterServlet extends HttpServlet {
         u.setNickname(nick);
         u.setStatus(0);
 
+        ServiceResponse<Void> res = userBasicService.register(user, pass, nick, Role.valueOf(Integer.parseInt(role)));
         PrintWriter pw = resp.getWriter();
-        try {
-            UserMapper mapper = getMapper(UserMapper.class);
-            mapper.insert(u);
-            commit();
+
+        if(res.isSuccess()) {
             pw.write(buildString(0, "SUCCESS"));
-        } catch (RuntimeException e) {
-            rollback();
-            log.error(e);
+        } else {
             pw.write(buildString(1, "Error occur"));
-        } finally {
-            close();
         }
     }
 }

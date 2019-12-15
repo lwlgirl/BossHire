@@ -62,4 +62,8 @@ public final class DataSourceUtils {
         session.close();
         instance.sessionThreadLocal.set(null);
     }
+
+    public static boolean isOpen() {
+        return instance.sessionThreadLocal.get() != null;
+    }
 }

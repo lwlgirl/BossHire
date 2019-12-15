@@ -1,7 +1,11 @@
 package com.lwl.bosshire.vo;
 
 import com.lwl.bosshire.pojo.Career;
+import com.lwl.bosshire.pojo.Company;
+import com.lwl.bosshire.pojo.Tag;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author lizifan 695199262@qq.com
@@ -24,9 +28,11 @@ public class CareerVo {
 
     private Integer companyId;
 
-    private CompanyVo companyInfo;
+    private Company companyInfo;
 
     private String desc;
+
+    private List<Tag> tags;
 
     public CareerVo(Career career) {
         this.id = career.getCareerId();
