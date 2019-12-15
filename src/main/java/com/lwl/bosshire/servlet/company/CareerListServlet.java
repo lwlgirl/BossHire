@@ -4,7 +4,6 @@ import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.service.company.CompanyBasicService;
 import com.lwl.bosshire.vo.CareerListVo;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +24,12 @@ public class CareerListServlet extends HttpServlet {
     private final CompanyBasicService companyBasicService = CompanyBasicService.INSTANCE;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter pw = resp.getWriter();
         ServiceResponse<CareerListVo> res = companyBasicService.companyCareerList();
         if(!res.isSuccess()) {
             pw.write(buildString(res.code(), "FAILURE"));
+            return;
         }
 
         pw.write(buildString(0, "SUCCESS", res.data()));
