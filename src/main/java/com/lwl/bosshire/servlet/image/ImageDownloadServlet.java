@@ -12,23 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.Properties;
-
-import static com.lwl.bosshire.utils.ResponseUtils.*;
 
 /**
  * @author lizifan 695199262@qq.com
- * @since 2019.12.16 0:02
+ * @since 2019.12.16 9:42
  */
 @WebServlet(value = "/image/upload", initParams = {
-    @WebInitParam(name = "image-properties-path", value = "image.properties")
+        @WebInitParam(name = "image-properties-path", value = "image.properties")
 })
-public class ImageUploadServlet extends HttpServlet {
+public class ImageDownloadServlet extends HttpServlet {
 
     private ImageService imageService;
-
-    private int uploadMaxLength;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -45,7 +40,6 @@ public class ImageUploadServlet extends HttpServlet {
                 throw new ServletException("image.upload.path is null.");
             }
             this.imageService = ImageService.getInstance(uploadPath);
-            this.uploadMaxLength = Integer.parseInt(p.getProperty("image.upload.size"));
         } catch (IOException | NumberFormatException e) {
             throw new ServletException(e);
         }
@@ -53,17 +47,21 @@ public class ImageUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if(req.getContentLength() > uploadMaxLength) {
-            resp.sendError(403);
+        String name = req.getParameter("name");
+        if(name == null) {
+            resp.sendError(400);
             return;
         }
 
-        ServiceResponse<String> res = imageService.upload(req.getInputStream(), req.getContentType());
-        PrintWriter pw = resp.getWriter();
+        ServiceResponse<String> res = imageService.download(name, resp.getOutputStream());
         if(res.isSuccess()) {
-            success(res.data(), pw);
+            resp.setContentType(resp.getContentType());
         } else {
-            failure(res.code(), pw);
+            if(res.code() > 0) {
+                resp.sendError(404);
+            } else {
+                resp.sendError(500);
+            }
         }
     }
 }

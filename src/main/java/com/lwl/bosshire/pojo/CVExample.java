@@ -575,53 +575,133 @@ public class CVExample {
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidEqualTo(Integer value) {
+        public Criteria andCvWxidEqualTo(String value) {
             addCriterion("cv_wxid =", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidNotEqualTo(Integer value) {
+        public Criteria andCvWxidNotEqualTo(String value) {
             addCriterion("cv_wxid <>", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidGreaterThan(Integer value) {
+        public Criteria andCvWxidGreaterThan(String value) {
             addCriterion("cv_wxid >", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCvWxidGreaterThanOrEqualTo(String value) {
             addCriterion("cv_wxid >=", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidLessThan(Integer value) {
+        public Criteria andCvWxidLessThan(String value) {
             addCriterion("cv_wxid <", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidLessThanOrEqualTo(Integer value) {
+        public Criteria andCvWxidLessThanOrEqualTo(String value) {
             addCriterion("cv_wxid <=", value, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidIn(List<Integer> values) {
+        public Criteria andCvWxidLike(String value) {
+            addCriterion("cv_wxid like", value, "cvWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvWxidNotLike(String value) {
+            addCriterion("cv_wxid not like", value, "cvWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvWxidIn(List<String> values) {
             addCriterion("cv_wxid in", values, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidNotIn(List<Integer> values) {
+        public Criteria andCvWxidNotIn(List<String> values) {
             addCriterion("cv_wxid not in", values, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidBetween(Integer value1, Integer value2) {
+        public Criteria andCvWxidBetween(String value1, String value2) {
             addCriterion("cv_wxid between", value1, value2, "cvWxid");
             return (Criteria) this;
         }
 
-        public Criteria andCvWxidNotBetween(Integer value1, Integer value2) {
+        public Criteria andCvWxidNotBetween(String value1, String value2) {
             addCriterion("cv_wxid not between", value1, value2, "cvWxid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageIsNull() {
+            addCriterion("cv_head_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageIsNotNull() {
+            addCriterion("cv_head_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageEqualTo(String value) {
+            addCriterion("cv_head_image =", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageNotEqualTo(String value) {
+            addCriterion("cv_head_image <>", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageGreaterThan(String value) {
+            addCriterion("cv_head_image >", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageGreaterThanOrEqualTo(String value) {
+            addCriterion("cv_head_image >=", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageLessThan(String value) {
+            addCriterion("cv_head_image <", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageLessThanOrEqualTo(String value) {
+            addCriterion("cv_head_image <=", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageLike(String value) {
+            addCriterion("cv_head_image like", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageNotLike(String value) {
+            addCriterion("cv_head_image not like", value, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageIn(List<String> values) {
+            addCriterion("cv_head_image in", values, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageNotIn(List<String> values) {
+            addCriterion("cv_head_image not in", values, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageBetween(String value1, String value2) {
+            addCriterion("cv_head_image between", value1, value2, "cvHeadImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andCvHeadImageNotBetween(String value1, String value2) {
+            addCriterion("cv_head_image not between", value1, value2, "cvHeadImage");
             return (Criteria) this;
         }
 

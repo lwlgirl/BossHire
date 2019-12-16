@@ -1,5 +1,13 @@
 package com.lwl.bosshire.pojo;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
 public class CVWithBLOBs extends CV {
     private String cvPersonalSkill;
 
@@ -11,43 +19,13 @@ public class CVWithBLOBs extends CV {
 
     private String cvStudyExp;
 
-    public String getCvPersonalSkill() {
-        return cvPersonalSkill;
-    }
-
-    public void setCvPersonalSkill(String cvPersonalSkill) {
-        this.cvPersonalSkill = cvPersonalSkill == null ? null : cvPersonalSkill.trim();
-    }
-
-    public String getCvHopeCareer() {
-        return cvHopeCareer;
-    }
-
-    public void setCvHopeCareer(String cvHopeCareer) {
-        this.cvHopeCareer = cvHopeCareer == null ? null : cvHopeCareer.trim();
-    }
-
-    public String getCvWorkExp() {
-        return cvWorkExp;
-    }
-
-    public void setCvWorkExp(String cvWorkExp) {
-        this.cvWorkExp = cvWorkExp == null ? null : cvWorkExp.trim();
-    }
-
-    public String getCvProjectExp() {
-        return cvProjectExp;
-    }
-
-    public void setCvProjectExp(String cvProjectExp) {
-        this.cvProjectExp = cvProjectExp == null ? null : cvProjectExp.trim();
-    }
-
-    public String getCvStudyExp() {
-        return cvStudyExp;
-    }
-
-    public void setCvStudyExp(String cvStudyExp) {
-        this.cvStudyExp = cvStudyExp == null ? null : cvStudyExp.trim();
+    @Builder
+    private CVWithBLOBs(Integer cvId, Integer cvUid, String cvFullName, Integer cvSex, String cvPhone, String cvBirth, String cvEmail, String cvWxid, String cvHeadImage, Date cvCreateTime, Integer cvStatus, String cvPersonalSkill, String cvHopeCareer, String cvWorkExp, String cvProjectExp, String cvStudyExp) {
+        super(cvId, cvUid, cvFullName, cvSex, cvPhone, cvBirth, cvEmail, cvWxid, cvHeadImage, cvCreateTime, cvStatus);
+        this.cvPersonalSkill = cvPersonalSkill;
+        this.cvHopeCareer = cvHopeCareer;
+        this.cvWorkExp = cvWorkExp;
+        this.cvProjectExp = cvProjectExp;
+        this.cvStudyExp = cvStudyExp;
     }
 }

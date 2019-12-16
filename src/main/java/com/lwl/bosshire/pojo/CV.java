@@ -1,12 +1,16 @@
 package com.lwl.bosshire.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CV {
     private Integer cvId;
 
@@ -22,12 +26,12 @@ public class CV {
 
     private String cvEmail;
 
-    private Integer cvWxid;
+    private String cvWxid;
+
+    private String cvHeadImage;
 
     private Date cvCreateTime;
 
     private Integer cvStatus;
 
-
-    public CV() { }
 }

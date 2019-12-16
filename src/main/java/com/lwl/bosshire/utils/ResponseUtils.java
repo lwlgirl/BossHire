@@ -31,6 +31,10 @@ public final class ResponseUtils {
         writer.write(SUCCESS_MSG);
     }
 
+    public static void success(Object data, Writer writer) throws IOException {
+        writer.write(ResponseMessage.buildString(0, "SUCCESS", data));
+    }
+
     public static void failure(int code, Writer writer) throws IOException {
         writer.write(ResponseMessage.buildString(code, "FAILURE"));
     }
