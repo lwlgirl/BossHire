@@ -12,6 +12,8 @@ public final class CommonUtils {
         return list == null || list.size() == 0 ? null : list.get(0);
     }
 
+
+
     private CommonUtils() { }
 
 }

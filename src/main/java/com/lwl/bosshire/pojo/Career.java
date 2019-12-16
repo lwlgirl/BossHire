@@ -2,9 +2,11 @@ package com.lwl.bosshire.pojo;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
-@Builder
 @Data
+@Builder
 public class Career {
     private Integer careerId;
 
@@ -20,5 +22,6 @@ public class Career {
 
     private String careerDesc;
 
+    @Tolerate
     public Career() { }
 }

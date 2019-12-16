@@ -2,12 +2,14 @@ package com.lwl.bosshire.pojo;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.util.Date;
 
 @Data
 @Builder
 public class Company {
+
     private Integer companyId;
 
     private String companyName;
@@ -26,5 +28,7 @@ public class Company {
 
     private Integer companyUid;
 
-    public Company() {}
+    @Tolerate
+    public Company() { }
+
 }

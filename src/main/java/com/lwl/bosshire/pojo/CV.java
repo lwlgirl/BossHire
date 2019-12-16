@@ -1,17 +1,15 @@
 package com.lwl.bosshire.pojo;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import java.util.Date;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class CV {
+
     private Integer cvId;
 
     private Integer cvUid;
@@ -34,4 +32,6 @@ public class CV {
 
     private Integer cvStatus;
 
+    @Tolerate
+    public CV() { }
 }

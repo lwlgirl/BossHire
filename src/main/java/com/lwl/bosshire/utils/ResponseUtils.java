@@ -23,6 +23,10 @@ public final class ResponseUtils {
         return SUCCESS_MSG;
     }
 
+    public static String success(Object object) {
+        return ResponseMessage.buildString(0, "SUCCESS", object);
+    }
+
     public static String failure(int code) {
         return ResponseMessage.buildString(code, "FAILURE");
     }

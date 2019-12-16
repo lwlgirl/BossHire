@@ -21,6 +21,10 @@ public class UserAuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        if(UserContext.get() != null) {
+            UserContext.set(null);
+        }
+
         HttpServletRequest req = (HttpServletRequest) request;
         UserContext.set((User) req.getSession().getAttribute(UserContext.USER_KEY));
         chain.doFilter(request, response);

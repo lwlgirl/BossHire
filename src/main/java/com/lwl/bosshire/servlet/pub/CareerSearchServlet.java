@@ -12,7 +12,6 @@ import java.io.IOException;
  * @since 2019/12/16 13:55
  */
 @WebServlet("/api/public/career/search")
-@Deprecated
 public class CareerSearchServlet extends HttpServlet {
 
     @Override
