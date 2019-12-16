@@ -7,7 +7,7 @@
     <properties resource="config.properties"/>
     <typeAliases>
         <!-- 此处配置的是sql查询后返回的类型所在包位置 -->
-        <package name="com.lwl.bosshire.pojo"></package>
+        <package name="com.lwl.bosshire.pojo"/>
     </typeAliases>
 
     <environments default="development">
@@ -22,9 +22,16 @@
         </environment>
     </environments>
 
-    <!-- 配置sql映射文件 -->
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/TagMapper.xml"/>
+        <mapper resource="mapper/JobApplyMapper.xml"/>
+        <mapper resource="mapper/ImageMapper.xml"/>
+        <mapper resource="mapper/CVMapper.xml"/>
+        <mapper resource="mapper/CompanyMapper.xml"/>
+        <mapper resource="mapper/CareerTypeMapper.xml"/>
+        <mapper resource="mapper/CareerTagMapper.xml"/>
+        <mapper resource="mapper/CareerMapper.xml"/>
     </mappers>
 
 </configuration>

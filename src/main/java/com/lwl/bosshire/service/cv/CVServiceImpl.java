@@ -6,6 +6,7 @@ import com.lwl.bosshire.dao.CVMapper;
 import com.lwl.bosshire.dao.JobApplyMapper;
 import com.lwl.bosshire.pojo.*;
 import com.lwl.bosshire.service.company.CompanyBasicService;
+import com.lwl.bosshire.service.job.JobService;
 import com.lwl.bosshire.utils.UserContext;
 import com.lwl.bosshire.vo.DeliverCV;
 import lombok.extern.log4j.Log4j;
@@ -24,6 +25,8 @@ import static com.lwl.bosshire.utils.CommonUtils.*;
 public class CVServiceImpl implements CVService {
 
     private final CompanyBasicService companyBasicService = CompanyBasicService.INSTANCE;
+
+    private final JobService jobService = JobService.INSTANCE;
 
 
     @Override
@@ -63,20 +66,38 @@ public class CVServiceImpl implements CVService {
 
 
     @Override
-    public ServiceResponse<CVWithBLOBs> showPersonalCV(int cvid) {
-        if(UserContext.userRole() != Role.JH) {
+    public ServiceResponse<CVWithBLOBs> showCVDetail(int cvid) {
+        Role role = UserContext.userRole();
+        if(role == Role.JH) {
+            User user = UserContext.get();
+            int uid = user.getUserId();
+            CVExample cve = new CVExample();
+            cve.createCriteria().andCvIdEqualTo(cvid).andCvUidEqualTo(uid);
+
+            CVMapper mapper = getMapper(CVMapper.class);
+            CVWithBLOBs cv = getFirst(mapper.selectByExampleWithBLOBs(cve));
+
+            return cv != null ? success(cv) : failure(1);
+        } else if(role == Role.HR) {
+            ServiceResponse<Company> res = companyBasicService.company();
+            if(!res.isSuccess()) {
+                return failure(1);
+            }
+
+            int cid = res.data().getCompanyId();
+            if(!jobService.checkoutCVInCompanyJobApplyList(cid, cvid).data()) {
+                return failure(2);
+            }
+
+            CVMapper mapper = getMapper(CVMapper.class);
+            CVExample cve = new CVExample();
+            cve.createCriteria().andCvIdEqualTo(cvid);
+
+            CVWithBLOBs cv = getFirst(mapper.selectByExampleWithBLOBs(cve));
+            return cv != null ? success(cv) : failure(3);
+        } else {
             return failure(-1);
         }
-
-        User user = UserContext.get();
-        int uid = user.getUserId();
-        CVExample cve = new CVExample();
-        cve.createCriteria().andCvIdEqualTo(uid).andCvUidEqualTo(uid);
-
-        CVMapper mapper = getMapper(CVMapper.class);
-        CVWithBLOBs cv = getFirst(mapper.selectByExampleWithBLOBs(cve));
-
-        return cv != null ? success(cv) : failure(1);
     }
 
 
@@ -116,8 +137,7 @@ public class CVServiceImpl implements CVService {
             if(ja != null) {
                 DeliverCV dcv = new DeliverCV();
                 dcv.setCv(e);
-                dcv.setSubmitTime(ja.getJaSubmitTime());
-                dcv.setStatus(ja.getJaStatus());
+                dcv.setJobApplyInfo(ja);
                 result.add(dcv);
             }
         });

@@ -10,9 +10,10 @@ import java.io.IOException;
 /**
  * @author lzf abc123lzf@126.com
  * @since 2019/12/16 13:56
- * 所有职位列表
+ * 职位列表查询
  */
 @WebServlet("/api/public/career/list")
+@Deprecated
 public class CareerListServlet extends HttpServlet {
 
     @Override

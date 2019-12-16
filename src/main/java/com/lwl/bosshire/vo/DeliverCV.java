@@ -1,6 +1,7 @@
 package com.lwl.bosshire.vo;
 
 import com.lwl.bosshire.pojo.CV;
+import com.lwl.bosshire.pojo.JobApply;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,9 +16,5 @@ public class DeliverCV {
 
     private CV cv;
 
-    private Integer delivererUID;
-
-    private Date submitTime;
-
-    private Integer status;
+    private JobApply jobApplyInfo;
 }

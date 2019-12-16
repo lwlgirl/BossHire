@@ -17,7 +17,7 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
 /**
  * @author lzf abc123lzf@126.com
  * @since 2019/12/16 13:06
- * 浏览本人简历细节
+ * 浏览本人简历列表
  */
 @WebServlet("/api/personal/cv/view")
 public class ViewPersonalCVServlet extends HttpServlet {

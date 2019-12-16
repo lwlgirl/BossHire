@@ -23,11 +23,11 @@ public interface CVService {
     ServiceResponse<Void> insertPersonalCV(CVWithBLOBs cv);
 
     /**
-     * 展示个人简历
+     * 展示简历
      * @param cvid 简历ID
      * @return 简历消息
      */
-    ServiceResponse<CVWithBLOBs> showPersonalCV(int cvid);
+    ServiceResponse<CVWithBLOBs> showCVDetail(int cvid);
 
     /**
      * 查看公司收到的简历

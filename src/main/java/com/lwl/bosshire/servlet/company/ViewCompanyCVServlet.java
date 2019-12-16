@@ -17,7 +17,7 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
 /**
  * @author lzf abc123lzf@126.com
  * @since 2019/12/16 13:24
- * 查看公司收到的简历
+ * 查看公司收到的求职信息
  */
 @WebServlet("/api/company/cv/view")
 public class ViewCompanyCVServlet extends HttpServlet {
