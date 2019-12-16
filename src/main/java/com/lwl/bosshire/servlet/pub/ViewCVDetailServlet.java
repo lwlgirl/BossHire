@@ -4,7 +4,6 @@ import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.pojo.CVWithBLOBs;
 import com.lwl.bosshire.service.cv.CVService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,18 +18,18 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
  * @since 2019.12.16 16:00
  * 公司查看投递的简历/个人查看投递的简历
  */
-@WebServlet({"/api/company/cv/view", "/api/personal/cv/view"})
+@WebServlet({"/api/company/cv/detail", "/api/personal/cv/detail"})
 public class ViewCVDetailServlet extends HttpServlet {
 
     private final CVService cvService = CVService.INSTANCE;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         this.doPost(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int cvid = Integer.parseInt(req.getParameter("id"));
         ServiceResponse<CVWithBLOBs> res = cvService.showCVDetail(cvid);
         PrintWriter pw = resp.getWriter();

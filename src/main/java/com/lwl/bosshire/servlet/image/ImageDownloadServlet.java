@@ -18,7 +18,7 @@ import java.util.Properties;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.16 9:42
  */
-@WebServlet(value = "/api/image/upload", initParams = {
+@WebServlet(value = "/api/image/load", initParams = {
         @WebInitParam(name = "image-properties-path", value = "image.properties")
 })
 public class ImageDownloadServlet extends HttpServlet {

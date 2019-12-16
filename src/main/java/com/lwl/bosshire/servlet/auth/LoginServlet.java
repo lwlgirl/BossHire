@@ -1,7 +1,9 @@
 package com.lwl.bosshire.servlet.auth;
 
 import com.lwl.bosshire.common.ServiceResponse;
+import com.lwl.bosshire.pojo.User;
 import com.lwl.bosshire.service.user.UserBasicService;
+import com.lwl.bosshire.utils.UserContext;
 import lombok.extern.log4j.Log4j;
 
 import javax.servlet.annotation.WebServlet;
@@ -23,9 +25,10 @@ public class LoginServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
 
-        ServiceResponse<Void> res = userBasicService.login(phone, password);
+        ServiceResponse<User> res = userBasicService.login(phone, password);
         PrintWriter pw = response.getWriter();
         if(res.isSuccess()) {
+            request.getSession().setAttribute(UserContext.USER_KEY, res.data());
             pw.write(buildString(0, "SUCCESS"));
             return;
         }

@@ -2,6 +2,7 @@ package com.lwl.bosshire.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
  * @since 2019.12.16 15:58
  * 允许跨域
  */
-@WebFilter
+@WebFilter("/*")
 public class CrosFilter implements Filter {
 
     @Override
@@ -19,6 +20,7 @@ public class CrosFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
         /* 允许跨域的主机地址 */
         response.setHeader("Access-Control-Allow-Origin", "*");
         /* 允许跨域的请求方法GET, POST, HEAD 等 */
@@ -29,6 +31,12 @@ public class CrosFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "*");
         /* 是否携带cookie */
         response.setHeader("Access-Control-Allow-Credentials", "true");
+        if(request.getRequestURI().startsWith("/api")) {
+            if(!request.getRequestURI().startsWith("/api/image")) {
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+            }
+        }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

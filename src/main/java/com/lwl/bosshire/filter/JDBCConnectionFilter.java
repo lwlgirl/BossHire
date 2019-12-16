@@ -10,13 +10,11 @@ import java.io.IOException;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.15 19:30
  */
-@WebFilter
+@WebFilter("/*")
 public class JDBCConnectionFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    public void init(FilterConfig filterConfig) { }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -29,7 +27,5 @@ public class JDBCConnectionFilter implements Filter {
     }
 
     @Override
-    public void destroy() {
-
-    }
+    public void destroy() { }
 }

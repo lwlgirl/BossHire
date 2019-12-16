@@ -2,6 +2,7 @@ package com.lwl.bosshire.service.user;
 
 import com.lwl.bosshire.common.Role;
 import com.lwl.bosshire.common.ServiceResponse;
+import com.lwl.bosshire.pojo.User;
 
 /**
  * @author lizifan 695199262@qq.com
@@ -11,7 +12,7 @@ public interface UserBasicService {
 
     UserBasicService INSTANCE = new UserBasicServiceImpl();
 
-    ServiceResponse<Void> login(String phone, String password);
+    ServiceResponse<User> login(String phone, String password);
 
     ServiceResponse<Void> register(String phone, String password, String nickname, Role role);
 }

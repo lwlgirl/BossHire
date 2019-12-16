@@ -20,7 +20,7 @@ import static com.lwl.bosshire.utils.CommonUtils.*;
 class UserBasicServiceImpl implements UserBasicService {
 
     @Override
-    public ServiceResponse<Void> login(String phone, String password) {
+    public ServiceResponse<User> login(String phone, String password) {
 
         UserMapper userMapper = DataSourceUtils.getMapper(UserMapper.class);
         UserExample ue = new UserExample();
@@ -32,7 +32,7 @@ class UserBasicServiceImpl implements UserBasicService {
                 return failure(1);
             } else {
                 if(user.getPassword().equals(password)) {
-                    return success();
+                    return success(user);
                 } else {
                     return failure(2);
                 }
@@ -55,7 +55,7 @@ class UserBasicServiceImpl implements UserBasicService {
 
         try {
             UserMapper mapper = getMapper(UserMapper.class);
-            mapper.insert(u);
+            mapper.insertSelective(u);
             commit();
             return success();
         } catch (RuntimeException e) {

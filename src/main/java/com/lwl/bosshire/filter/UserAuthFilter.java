@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.14 21:51
  */
-@WebFilter
+@WebFilter("/*")
 public class UserAuthFilter implements Filter {
 
     @Override
