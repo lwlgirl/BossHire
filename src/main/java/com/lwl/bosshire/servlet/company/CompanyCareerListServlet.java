@@ -19,7 +19,7 @@ import static com.lwl.bosshire.common.ResponseMessage.*;
  * 获取当前公司职位列表
  */
 @WebServlet("/api/company/career/list")
-public class CareerListServlet extends HttpServlet {
+public class CompanyCareerListServlet extends HttpServlet {
 
     private final CompanyBasicService companyBasicService = CompanyBasicService.INSTANCE;
 

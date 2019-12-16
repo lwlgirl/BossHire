@@ -11,10 +11,7 @@ public interface UserBasicService {
 
     UserBasicService INSTANCE = new UserBasicServiceImpl();
 
-
     ServiceResponse<Void> login(String phone, String password);
 
-
     ServiceResponse<Void> register(String phone, String password, String nickname, Role role);
-
 }

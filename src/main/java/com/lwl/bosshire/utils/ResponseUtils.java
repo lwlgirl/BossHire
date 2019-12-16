@@ -38,4 +38,8 @@ public final class ResponseUtils {
     public static void failure(int code, Writer writer) throws IOException {
         writer.write(ResponseMessage.buildString(code, "FAILURE"));
     }
+
+    public static void failure(int code, String message, Writer writer) throws IOException {
+        writer.write(ResponseMessage.buildString(code, message));
+    }
 }

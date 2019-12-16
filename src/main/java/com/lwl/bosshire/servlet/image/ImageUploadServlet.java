@@ -21,7 +21,7 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.16 0:02
  */
-@WebServlet(value = "/image/upload", initParams = {
+@WebServlet(value = "/api/image/upload", initParams = {
     @WebInitParam(name = "image-properties-path", value = "image.properties")
 })
 public class ImageUploadServlet extends HttpServlet {

@@ -6,7 +6,7 @@
     <result column="ja_company_id" property="jaCompanyId" jdbcType="INTEGER" />
     <result column="ja_cv_id" property="jaCvId" jdbcType="INTEGER" />
     <result column="ja_deliverer_uid" property="jaDelivererUid" jdbcType="INTEGER" />
-    <result column="ja_submit_time" property="jaSubmitTime" jdbcType="INTEGER" />
+    <result column="ja_submit_time" property="jaSubmitTime" jdbcType="TIMESTAMP" />
     <result column="ja_status" property="jaStatus" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -105,7 +105,7 @@
       ja_deliverer_uid, ja_submit_time, ja_status
       )
     values (#{jaId,jdbcType=INTEGER}, #{jaCompanyId,jdbcType=INTEGER}, #{jaCvId,jdbcType=INTEGER}, 
-      #{jaDelivererUid,jdbcType=INTEGER}, #{jaSubmitTime,jdbcType=INTEGER}, #{jaStatus,jdbcType=INTEGER}
+      #{jaDelivererUid,jdbcType=INTEGER}, #{jaSubmitTime,jdbcType=TIMESTAMP}, #{jaStatus,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.JobApply" >
@@ -144,7 +144,7 @@
         #{jaDelivererUid,jdbcType=INTEGER},
       </if>
       <if test="jaSubmitTime != null" >
-        #{jaSubmitTime,jdbcType=INTEGER},
+        #{jaSubmitTime,jdbcType=TIMESTAMP},
       </if>
       <if test="jaStatus != null" >
         #{jaStatus,jdbcType=INTEGER},
@@ -173,7 +173,7 @@
         ja_deliverer_uid = #{record.jaDelivererUid,jdbcType=INTEGER},
       </if>
       <if test="record.jaSubmitTime != null" >
-        ja_submit_time = #{record.jaSubmitTime,jdbcType=INTEGER},
+        ja_submit_time = #{record.jaSubmitTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.jaStatus != null" >
         ja_status = #{record.jaStatus,jdbcType=INTEGER},
@@ -189,7 +189,7 @@
       ja_company_id = #{record.jaCompanyId,jdbcType=INTEGER},
       ja_cv_id = #{record.jaCvId,jdbcType=INTEGER},
       ja_deliverer_uid = #{record.jaDelivererUid,jdbcType=INTEGER},
-      ja_submit_time = #{record.jaSubmitTime,jdbcType=INTEGER},
+      ja_submit_time = #{record.jaSubmitTime,jdbcType=TIMESTAMP},
       ja_status = #{record.jaStatus,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -208,7 +208,7 @@
         ja_deliverer_uid = #{jaDelivererUid,jdbcType=INTEGER},
       </if>
       <if test="jaSubmitTime != null" >
-        ja_submit_time = #{jaSubmitTime,jdbcType=INTEGER},
+        ja_submit_time = #{jaSubmitTime,jdbcType=TIMESTAMP},
       </if>
       <if test="jaStatus != null" >
         ja_status = #{jaStatus,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
     set ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
       ja_cv_id = #{jaCvId,jdbcType=INTEGER},
       ja_deliverer_uid = #{jaDelivererUid,jdbcType=INTEGER},
-      ja_submit_time = #{jaSubmitTime,jdbcType=INTEGER},
+      ja_submit_time = #{jaSubmitTime,jdbcType=TIMESTAMP},
       ja_status = #{jaStatus,jdbcType=INTEGER}
     where ja_id = #{jaId,jdbcType=INTEGER}
   </update>

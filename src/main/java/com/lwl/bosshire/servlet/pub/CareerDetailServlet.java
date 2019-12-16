@@ -1,4 +1,4 @@
-package com.lwl.bosshire.servlet.career;
+package com.lwl.bosshire.servlet.pub;
 
 import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.service.company.CompanyBasicService;
@@ -17,7 +17,7 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.15 15:37
  */
-@WebServlet("/api/company/career/detail")
+@WebServlet("/api/public/career/detail")
 public class CareerDetailServlet extends HttpServlet {
 
     private final CompanyBasicService companyBasicService = CompanyBasicService.INSTANCE;

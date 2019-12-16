@@ -1,6 +1,7 @@
 package com.lwl.bosshire.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class JobApplyExample {
@@ -354,52 +355,52 @@ public class JobApplyExample {
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeEqualTo(Integer value) {
+        public Criteria andJaSubmitTimeEqualTo(Date value) {
             addCriterion("ja_submit_time =", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeNotEqualTo(Integer value) {
+        public Criteria andJaSubmitTimeNotEqualTo(Date value) {
             addCriterion("ja_submit_time <>", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeGreaterThan(Integer value) {
+        public Criteria andJaSubmitTimeGreaterThan(Date value) {
             addCriterion("ja_submit_time >", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andJaSubmitTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("ja_submit_time >=", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeLessThan(Integer value) {
+        public Criteria andJaSubmitTimeLessThan(Date value) {
             addCriterion("ja_submit_time <", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andJaSubmitTimeLessThanOrEqualTo(Date value) {
             addCriterion("ja_submit_time <=", value, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeIn(List<Integer> values) {
+        public Criteria andJaSubmitTimeIn(List<Date> values) {
             addCriterion("ja_submit_time in", values, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeNotIn(List<Integer> values) {
+        public Criteria andJaSubmitTimeNotIn(List<Date> values) {
             addCriterion("ja_submit_time not in", values, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeBetween(Integer value1, Integer value2) {
+        public Criteria andJaSubmitTimeBetween(Date value1, Date value2) {
             addCriterion("ja_submit_time between", value1, value2, "jaSubmitTime");
             return (Criteria) this;
         }
 
-        public Criteria andJaSubmitTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andJaSubmitTimeNotBetween(Date value1, Date value2) {
             addCriterion("ja_submit_time not between", value1, value2, "jaSubmitTime");
             return (Criteria) this;
         }
