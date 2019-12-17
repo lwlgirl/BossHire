@@ -39,6 +39,7 @@ public class CVServiceImpl implements CVService {
 
         cv.setCvUid(UserContext.get().getUserId());
         cv.setCvCreateTime(new Date());
+        cv.setCvStatus(0);
         CVMapper mapper = getMapper(CVMapper.class);
 
         try {

@@ -21,6 +21,7 @@ public class CrosFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+        request.setCharacterEncoding("UTF-8");
         /* 允许跨域的主机地址 */
         response.setHeader("Access-Control-Allow-Origin", "*");
         /* 允许跨域的请求方法GET, POST, HEAD 等 */
