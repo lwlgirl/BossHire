@@ -25,18 +25,21 @@ public class UpdatePersonalCVServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        CVWithBLOBs cv = CVWithBLOBs.builder().cvFullName(req.getParameter("name"))
-            .cvSex(Integer.parseInt(req.getParameter("sex")))
-            .cvPhone(req.getParameter("phone"))
-            .cvBirth(req.getParameter("birth"))
-            .cvEmail(req.getParameter("email"))
-            .cvWxid(req.getParameter("wxid"))
-            .cvHeadImage(req.getParameter("head_image"))
-            .cvPersonalSkill(req.getParameter("personal_skill"))
-            .cvHopeCareer(req.getParameter("hope_career"))
-            .cvWorkExp(req.getParameter("work_exp"))
-            .cvProjectExp(req.getParameter("project_exp"))
-            .cvStudyExp(req.getParameter("study_exp")).build();
+        String s;
+        CVWithBLOBs cv = new CVWithBLOBs();
+        cv.setCvId((s = req.getParameter("id")) != null ? Integer.parseInt(s) : null);
+        cv.setCvFullName(req.getParameter("name"));
+        cv.setCvSex((s = req.getParameter("sex")) != null ? Integer.parseInt(s) : null);
+        cv.setCvPhone(req.getParameter("phone"));
+        cv.setCvBirth(req.getParameter("birth"));
+        cv.setCvEmail(req.getParameter("email"));
+        cv.setCvWxid(req.getParameter("wxid"));
+        cv.setCvHeadImage(req.getParameter("head_image"));
+        cv.setCvPersonalSkill(req.getParameter("personal_skill"));
+        cv.setCvHopeCareer(req.getParameter("hope_career"));
+        cv.setCvWorkExp(req.getParameter("work_exp"));
+        cv.setCvProjectExp(req.getParameter("project_exp"));
+        cv.setCvStudyExp(req.getParameter("study_exp"));
 
         ServiceResponse<Void> res = cvService.insertPersonalCV(cv);
         PrintWriter pw = resp.getWriter();

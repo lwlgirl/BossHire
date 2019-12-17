@@ -3,6 +3,7 @@ package com.lwl.bosshire.service.image;
 import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.dao.ImageMapper;
 import com.lwl.bosshire.pojo.Image;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -14,6 +15,7 @@ import static com.lwl.bosshire.config.DataSourceUtils.*;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.16 9:07
  */
+@Log4j
 class ImageServiceImpl implements ImageService {
 
     private final File uploadPath;
@@ -44,6 +46,7 @@ class ImageServiceImpl implements ImageService {
             commit();
             return success(name);
         } catch (IOException e) {
+            log.error(e);
             rollback();
             return failure(-2);
         }

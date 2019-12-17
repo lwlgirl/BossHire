@@ -5,11 +5,13 @@ import com.lwl.bosshire.service.image.ImageService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -21,6 +23,7 @@ import static com.lwl.bosshire.utils.ResponseUtils.*;
  * @author lizifan 695199262@qq.com
  * @since 2019.12.16 0:02
  */
+@MultipartConfig
 @WebServlet(value = "/api/image/upload", initParams = {
     @WebInitParam(name = "image-properties-path", value = "image.properties")
 })
@@ -52,13 +55,14 @@ public class ImageUploadServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         if(req.getContentLength() > uploadMaxLength) {
             resp.sendError(403);
             return;
         }
 
-        ServiceResponse<String> res = imageService.upload(req.getInputStream(), req.getContentType());
+        Part part = req.getPart("file");
+        ServiceResponse<String> res = imageService.upload(part.getInputStream(), part.getContentType());
         PrintWriter pw = resp.getWriter();
         if(res.isSuccess()) {
             success(res.data(), pw);

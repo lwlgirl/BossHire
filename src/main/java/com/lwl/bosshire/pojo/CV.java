@@ -2,11 +2,13 @@ package com.lwl.bosshire.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Tolerate;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class CV {
 
@@ -31,7 +33,4 @@ public class CV {
     private Date cvCreateTime;
 
     private Integer cvStatus;
-
-    @Tolerate
-    public CV() { }
 }
