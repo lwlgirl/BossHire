@@ -102,4 +102,12 @@ class JobServiceImpl implements JobService {
         int sz = mapper.selectByExample(jae).size();
         return sz > 0 ? success(true) : success(false);
     }
+
+
+    @Override
+    public ServiceResponse<Void> sendJobApply(int careerId, int cvid) {
+        JobApply ja = new JobApply();
+        ja.setJaCvId(cvid);
+        return null;
+    }
 }

@@ -33,4 +33,7 @@ public interface JobService {
      */
     ServiceResponse<Boolean> checkoutCVInCompanyJobApplyList(int cid, int cvid);
 
+
+    ServiceResponse<Void> sendJobApply(int career, int cvid);
+
 }

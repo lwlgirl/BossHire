@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 16/12/2019 09:58:10
+ Date: 17/12/2019 09:04:28
 */
 
 SET NAMES utf8mb4;
@@ -127,7 +127,12 @@ CREATE TABLE `cv_inf`  (
   `cv_create_time` datetime(0) NOT NULL,
   `cv_status` int(11) NOT NULL,
   PRIMARY KEY (`cv_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cv_inf
+-- ----------------------------
+INSERT INTO `cv_inf` VALUES (3, 2, NULL, 0, '18888888888', '1998/12/01', '695199262@qq.com', 'wechatlzf', NULL, '1、熟练而全面掌握通信及计算机网络专业知识；\n2、熟悉SQL Server、MySQL等数据库操作，了解Oracle数据库操作； 3、熟悉Linux系统基本操作，熟悉C++、JAVA、汇编、Perl等编程语言； 4、熟悉计算机软件工程理论；熟悉测试流程和技巧。', 'Java开发工程师', '1、行情数据图表API的标的物趋势图、微趋势图的代码重构：将原先Spring Boot项目迁移到Spring Cloud架构，并对老代码进行调整重构，并完成上线。\n2、微牛社区后台管理：用户奖金审批、内部账单管理', '2019.02 - 2019.02基于Netty开发的Socks5协议代理客户端/服务器独立开发\n\n该项目是仿造Shadowsocks编写的代理服务器，基于Netty框架编写。\n1、客户端使用Socks5代理协议接收本地代理请求\n2、客户端使用自定义协议通过SSL连接与服务器通讯\n3、服务器负责接收客户端消息，向目标服务器发起连接并将响应返回给客户端，再由客户端发送给本地代理请求发送者。\n项目已经发布到Github上', '2017-现在 吉首大学 软件工程专业 本科', '2019-12-17 00:50:15', 0);
 
 -- ----------------------------
 -- Table structure for image_inf
@@ -182,7 +187,7 @@ INSERT INTO `tag_inf` VALUES (9, '股票期权');
 -- ----------------------------
 DROP TABLE IF EXISTS `user_inf`;
 CREATE TABLE `user_inf`  (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -190,6 +195,12 @@ CREATE TABLE `user_inf`  (
   `role` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_inf
+-- ----------------------------
+INSERT INTO `user_inf` VALUES (1, '15874457816', NULL, '123456', '李老板', 1, 0);
+INSERT INTO `user_inf` VALUES (2, '13907315765', NULL, '123456', '张先生', 0, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
