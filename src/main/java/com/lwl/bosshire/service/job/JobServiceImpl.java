@@ -3,14 +3,12 @@ package com.lwl.bosshire.service.job;
 import com.lwl.bosshire.common.Role;
 import com.lwl.bosshire.common.ServiceResponse;
 import com.lwl.bosshire.dao.JobApplyMapper;
-import com.lwl.bosshire.pojo.Company;
-import com.lwl.bosshire.pojo.JobApply;
-import com.lwl.bosshire.pojo.JobApplyExample;
-import com.lwl.bosshire.pojo.User;
+import com.lwl.bosshire.pojo.*;
 import com.lwl.bosshire.service.company.CompanyBasicService;
 import com.lwl.bosshire.utils.UserContext;
 import lombok.extern.log4j.Log4j;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.lwl.bosshire.common.ServiceResponse.*;
@@ -106,8 +104,34 @@ class JobServiceImpl implements JobService {
 
     @Override
     public ServiceResponse<Void> sendJobApply(int careerId, int cvid) {
+        if(UserContext.userRole() != Role.JH) {
+            return failure(-1);
+        }
+
+        User user = UserContext.get();
+
         JobApply ja = new JobApply();
+        ServiceResponse<Career> res = companyBasicService.career(careerId);
+        if(!res.isSuccess()) {
+            return failure(1);
+        }
+
+        ja.setJaCompanyId(res.data().getCareerCompanyId());
+        ja.setJaCareerId(careerId);
         ja.setJaCvId(cvid);
-        return null;
+        ja.setJaDelivererUid(user.getUserId());
+        ja.setJaSubmitTime(new Date());
+        ja.setJaStatus(0);
+
+        JobApplyMapper mapper = getMapper(JobApplyMapper.class);
+        try {
+            mapper.insertSelective(ja);
+            commit();
+            return success();
+        } catch (RuntimeException e) {
+            log.error(e);
+            rollback();
+            return failure(-2);
+        }
     }
 }

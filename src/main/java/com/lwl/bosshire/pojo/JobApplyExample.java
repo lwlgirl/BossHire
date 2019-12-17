@@ -165,6 +165,66 @@ public class JobApplyExample {
             return (Criteria) this;
         }
 
+        public Criteria andJaCareerIdIsNull() {
+            addCriterion("ja_career_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdIsNotNull() {
+            addCriterion("ja_career_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdEqualTo(Integer value) {
+            addCriterion("ja_career_id =", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdNotEqualTo(Integer value) {
+            addCriterion("ja_career_id <>", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdGreaterThan(Integer value) {
+            addCriterion("ja_career_id >", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ja_career_id >=", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdLessThan(Integer value) {
+            addCriterion("ja_career_id <", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdLessThanOrEqualTo(Integer value) {
+            addCriterion("ja_career_id <=", value, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdIn(List<Integer> values) {
+            addCriterion("ja_career_id in", values, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdNotIn(List<Integer> values) {
+            addCriterion("ja_career_id not in", values, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdBetween(Integer value1, Integer value2) {
+            addCriterion("ja_career_id between", value1, value2, "jaCareerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andJaCareerIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("ja_career_id not between", value1, value2, "jaCareerId");
+            return (Criteria) this;
+        }
+
         public Criteria andJaCompanyIdIsNull() {
             addCriterion("ja_company_id is null");
             return (Criteria) this;

@@ -29,4 +29,6 @@ public interface CompanyBasicService {
     ServiceResponse<Void> deleteCareer(int id);
 
     ServiceResponse<CareerVo> careerDetail(int id);
+
+    ServiceResponse<Career> career(int id);
 }

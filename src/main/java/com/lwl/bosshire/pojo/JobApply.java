@@ -8,6 +8,8 @@ import java.util.Date;
 public class JobApply {
     private Integer jaId;
 
+    private Integer jaCareerId;
+
     private Integer jaCompanyId;
 
     private Integer jaCvId;

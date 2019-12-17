@@ -3,6 +3,7 @@
 <mapper namespace="com.lwl.bosshire.dao.JobApplyMapper" >
   <resultMap id="BaseResultMap" type="com.lwl.bosshire.pojo.JobApply" >
     <id column="ja_id" property="jaId" jdbcType="INTEGER" />
+    <result column="ja_career_id" property="jaCareerId" jdbcType="INTEGER" />
     <result column="ja_company_id" property="jaCompanyId" jdbcType="INTEGER" />
     <result column="ja_cv_id" property="jaCvId" jdbcType="INTEGER" />
     <result column="ja_deliverer_uid" property="jaDelivererUid" jdbcType="INTEGER" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ja_id, ja_company_id, ja_cv_id, ja_deliverer_uid, ja_submit_time, ja_status
+    ja_id, ja_career_id, ja_company_id, ja_cv_id, ja_deliverer_uid, ja_submit_time, ja_status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lwl.bosshire.pojo.JobApplyExample" >
     select
@@ -101,18 +102,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lwl.bosshire.pojo.JobApply" >
-    insert into job_apply_inf (ja_id, ja_company_id, ja_cv_id, 
-      ja_deliverer_uid, ja_submit_time, ja_status
-      )
-    values (#{jaId,jdbcType=INTEGER}, #{jaCompanyId,jdbcType=INTEGER}, #{jaCvId,jdbcType=INTEGER}, 
-      #{jaDelivererUid,jdbcType=INTEGER}, #{jaSubmitTime,jdbcType=TIMESTAMP}, #{jaStatus,jdbcType=INTEGER}
-      )
+    insert into job_apply_inf (ja_id, ja_career_id, ja_company_id, 
+      ja_cv_id, ja_deliverer_uid, ja_submit_time, 
+      ja_status)
+    values (#{jaId,jdbcType=INTEGER}, #{jaCareerId,jdbcType=INTEGER}, #{jaCompanyId,jdbcType=INTEGER}, 
+      #{jaCvId,jdbcType=INTEGER}, #{jaDelivererUid,jdbcType=INTEGER}, #{jaSubmitTime,jdbcType=TIMESTAMP}, 
+      #{jaStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lwl.bosshire.pojo.JobApply" >
     insert into job_apply_inf
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="jaId != null" >
         ja_id,
+      </if>
+      <if test="jaCareerId != null" >
+        ja_career_id,
       </if>
       <if test="jaCompanyId != null" >
         ja_company_id,
@@ -133,6 +137,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="jaId != null" >
         #{jaId,jdbcType=INTEGER},
+      </if>
+      <if test="jaCareerId != null" >
+        #{jaCareerId,jdbcType=INTEGER},
       </if>
       <if test="jaCompanyId != null" >
         #{jaCompanyId,jdbcType=INTEGER},
@@ -163,6 +170,9 @@
       <if test="record.jaId != null" >
         ja_id = #{record.jaId,jdbcType=INTEGER},
       </if>
+      <if test="record.jaCareerId != null" >
+        ja_career_id = #{record.jaCareerId,jdbcType=INTEGER},
+      </if>
       <if test="record.jaCompanyId != null" >
         ja_company_id = #{record.jaCompanyId,jdbcType=INTEGER},
       </if>
@@ -186,6 +196,7 @@
   <update id="updateByExample" parameterType="map" >
     update job_apply_inf
     set ja_id = #{record.jaId,jdbcType=INTEGER},
+      ja_career_id = #{record.jaCareerId,jdbcType=INTEGER},
       ja_company_id = #{record.jaCompanyId,jdbcType=INTEGER},
       ja_cv_id = #{record.jaCvId,jdbcType=INTEGER},
       ja_deliverer_uid = #{record.jaDelivererUid,jdbcType=INTEGER},
@@ -198,6 +209,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lwl.bosshire.pojo.JobApply" >
     update job_apply_inf
     <set >
+      <if test="jaCareerId != null" >
+        ja_career_id = #{jaCareerId,jdbcType=INTEGER},
+      </if>
       <if test="jaCompanyId != null" >
         ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
       </if>
@@ -218,7 +232,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lwl.bosshire.pojo.JobApply" >
     update job_apply_inf
-    set ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
+    set ja_career_id = #{jaCareerId,jdbcType=INTEGER},
+      ja_company_id = #{jaCompanyId,jdbcType=INTEGER},
       ja_cv_id = #{jaCvId,jdbcType=INTEGER},
       ja_deliverer_uid = #{jaDelivererUid,jdbcType=INTEGER},
       ja_submit_time = #{jaSubmitTime,jdbcType=TIMESTAMP},

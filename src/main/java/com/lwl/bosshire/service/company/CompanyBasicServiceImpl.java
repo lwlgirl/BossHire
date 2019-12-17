@@ -213,5 +213,12 @@ class CompanyBasicServiceImpl implements CompanyBasicService {
 
         return mapper.selectByExample(te);
     }
+
+    @Override
+    public ServiceResponse<Career> career(int id) {
+        CareerMapper mapper = getMapper(CareerMapper.class);
+        Career c = mapper.selectByPrimaryKey(id);
+        return c != null ? success(c) : failure(1);
+    }
 }
 

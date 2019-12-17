@@ -33,7 +33,12 @@ public interface JobService {
      */
     ServiceResponse<Boolean> checkoutCVInCompanyJobApplyList(int cid, int cvid);
 
-
-    ServiceResponse<Void> sendJobApply(int career, int cvid);
+    /**
+     * 个人提交职位申请
+     * @param careerId 职位ID
+     * @param cvid 个人简历ID
+     * @return 服务结果
+     */
+    ServiceResponse<Void> sendJobApply(int careerId, int cvid);
 
 }
