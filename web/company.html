@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/careerCss.css" charset="utf-8">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<body>
+<script>
+    $(function(){
+        $(".headerpage").load('header.html');
+    });
+</script>
+<div id="company">
+    <!--        <div class="headerpage"></div>-->
+    <div class="job-banner">
+        <div class="inner home-inner">
+            <div class="job-primary detail-box">
+                <div class="info-primary">
+                    <h1>腾讯</h1>
+                    <h3>dsfvdafbrgfbnfbdddddddbertbrtsarbaebciaksbdciwbdcil</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="careerDetail">
+        <h3>公司介绍</h3>
+        <br>
+        <div>
+            1、 负责根据公司人工智能科研项目的需要，做配套的软件开发工作；<br>
+            2、 负责公司平台产品的基础架构的设计，系统框架搭建以及核心功能开发；<br>
+            3、 深入发掘业务需求，开发后端基础服务，沉淀技术积累；<br>
+            4、 解决产品开发过程中的高性能，高并发和高可靠性问题。<br>
+        </div>
+    </div>
+
+    <div class="careerDetail">
+        <h3>公司地址</h3>
+        <br>
+        <div>
+            垫付部分八二八和阿布v饿啊率二百v
+        </div>
+    </div>
+
+    <div class="careerDetail">
+        <h3>公成立时间</h3>
+        <br>
+        <div>
+            豆瓣从我怕别人的差距哦我怕你率哦怕
+        </div>
+    </div>
+
+    <div class="careerDetail">
+        <h3>所有职位列表</h3>
+        <br>
+        <div class="searchBody">
+            <div class="searchList">
+
+                <div class="searchList1" v-for="temp in careerInfo">
+                    <span class="searchTital"><a href="#" style="color: #5dd5c8;">{{temp.name}}</a></span>
+                    <span class="searchSalary">{{temp.SalaryMin}}-{{SalaryMax}}K</span>
+                    <br> <br><hr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="careerLeader">
+        <span style="margin-left: 40px">王倩</span>
+        <span>-</span>
+        <span>HR</span>
+        <br>
+        <img style="border-radius: 50%;margin-left: 30px;margin-top: 10px;margin-bottom: 10px" src="https://img.bosszhipin.com/beijin/mcs/useravatar/20160918/8ba747a88e13f7fab0808642f0b1e4418c7dd922ad47494fc02c388e12c00eac_s.jpg?x-oss-process=image/resize,w_100,limit_0">
+        <br>
+        <input class="careerSend" type="button" value="发送简历">
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        var vm = new Vue({
+            el: '#company',
+            data:{
+                careerInfo:null,
+            },
+
+            created: function () {
+                console.log("created");
+                this.fetchData();
+            },
+            methods: {
+                fetchData() {
+                    axios.get('http://localhost:8080/api/company/career/list', {
+                        params: {
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.careerInfo = response.data.data;
+                        console.log(response.data);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
+
+
+</body>
+</html>

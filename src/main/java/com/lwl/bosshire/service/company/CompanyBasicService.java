@@ -20,6 +20,8 @@ public interface CompanyBasicService {
 
     ServiceResponse<Void> updateCompanyInfo(Company company);
 
+    ServiceResponse<Void> CompanyInfo();
+
     ServiceResponse<Void> addCareer(Career career);
 
     ServiceResponse<CareerListVo> companyCareerList();

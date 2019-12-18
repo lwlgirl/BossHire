@@ -5,6 +5,9 @@
     <title>register</title>
     <link href="css/loginCss.css" rel="stylesheet">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -13,29 +16,105 @@
 <div style="background-color: white;border-radius: 3%;height: 550px;width: 800px;margin: 200px 550px;position: relative">
 
     <div style="margin-left:300px;font-size: 23px;position: absolute;margin-top:100px">
-        <input type="radio" value="1" name="loginForm"><span>我要找工作</span>
-        <input type="radio" value="2" name="loginForm" style="margin-left: 50px"><span>我要招聘</span>
+        <input type="radio" value="0" name="loginForm"><span>我要找工作</span>
+        <input type="radio" value="1" name="loginForm" style="margin-left: 50px"><span>我要招聘</span>
     </div>
 
-    <form style="margin-left:300px;margin-top:200px;position: absolute">
-                <span>
-                    <img style="margin-left: -200px;" src="https://static.zhipin.com/v2/web/geek/images/logo.png">
-                </span>
+    <form style="margin-left:230px;margin-top:180px;position: absolute">
+        <span>
+            <img style="margin-left: -200px;" src="https://static.zhipin.com/v2/web/geek/images/logo.png">
+        </span>
         <div class="form-group" style="margin-top:-100px">
-            <label for="user" stype="display:inline;">账户：</label>
-            <input type="text" class="form-control" id="user" style="display:inline;height:50px; width:300px;" />
+            <label for="phone" stype="display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;手机号：</label>
+            <input type="text" class="form-control" id="phone" style="display:inline;height:50px; width:300px;" />
+        </div>
+
+        <div class="form-group" >
+            <label for="nickname" stype="display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：</label>
+            <input type="text" class="form-control" id="nickname" style="display:inline;height:50px; width:300px;" />
         </div>
 
         <div class="form-group">
-            <label for="password" style="display:inline;">密码：</label>
-            <input type="text" class="form-control" id="password" style="display:inline;height:50px;width:300px;"autocomplete="off" />
+            <label for="password1" style="display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：</label>
+            <input type="password" class="form-control" id="password1" style="display:inline;height:50px;width:300px;"autocomplete="off" />
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 350px;height:50px; background-color: #5dd5c8;border-color: #5dd5c8;border-radius: 0px">注册</button>
-
+        <div class="form-group">
+            <label for="password2" style="display:inline;">确认密码：</label>
+            <input type="password" class="form-control" id="password2" style="display:inline;height:50px;width:300px;"autocomplete="off" />
+        </div>
+        <span id="msg" style="color: red"></span>
     </form>
+
+    <button class="btn btn-primary" style="margin-left: 252px;margin-top: 474px;width: 350px;height:50px; background-color: #5dd5c8;border-color: #5dd5c8;border-radius: 0px" id="btn">注册</button>
 </div>
 
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+
+            var phone = document.getElementById("phone").value;
+            var nickname = document.getElementById("nickname").value;
+            var password1 = document.getElementById("password1").value;
+            var password2 = document.getElementById("password2").value;
+            var role = $('input:radio:checked').val();
+
+            console.log("role"+role);
+
+            if(phone == null || nickname == null || password1 == null || password2 == null || role == null){
+                var msg="信息未填写完整";
+                document.getElementById("msg").innerText=msg;
+            }else{
+
+                var xmlHttp = createXMLHttpRequest();
+
+                xmlHttp.open("POST",'http://localhost:8080/api/user/register', true);
+                xmlHttp.onreadystatechange = handler;
+                xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                xmlHttp.setRequestHeader('Access-Control-Allow-Origin','*');
+                xmlHttp.setRequestHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie, token');
+                xmlHttp.setRequestHeader('Access-Control-Allow-Method','POST,GET');
+                var data = 'phone=' + phone  + '&password=' + password1 +'&nick=' + nickname +'&role=' + role;
+
+                xmlHttp.send(data);
+
+                function handler() {
+
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+                        var responseText = xmlHttp.responseText;
+                        var info = JSON.parse(responseText);
+
+                        if(info.code == 1){
+                            var msg="注册失败";
+                            document.getElementById("msg").innerText=msg;
+
+                        }else if(info.code == 0){//成功
+
+                            var cookie = xmlHttp.getResponseHeader("Platform-Token");
+                            var aa = xmlHttp.getAllResponseHeaders();
+                            console.log(cookie);
+                            sessionStorage.setItem('token',cookie);
+
+                            url = "login.html";
+                            window.location.href = url;
+                        }
+                    }
+                }
+            }
+
+        }
+    });
+
+    function createXMLHttpRequest() {
+        return new XMLHttpRequest()
+    };
+
+</script>
 </body>
 
 </html>

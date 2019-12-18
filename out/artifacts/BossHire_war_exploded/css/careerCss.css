@@ -1,0 +1,107 @@
+.inner {
+    width: 1184px;
+    max-width: 1184px;
+    margin: 86px auto;
+}
+.home-inner {
+    max-width: 1184px;
+}
+.job-banner {
+    background: #444c60 url(https://static.zhipin.com/zhipin-geek/v102/web/geek/images/detail-bg.jpg) center center no-repeat;
+    height: 280px;
+    color: #fff;
+    padding-top: 10px;
+}
+.job-primary {
+    height: 48px;
+    color: white;
+    padding: 20px 0 19px;
+    margin: 0 30px;
+    position: relative;
+    font-size: 24px;
+}
+.job-banner .info-primary .job-tags {
+    padding-top: 8px;
+    height: 27px;
+    display: inline-block;
+    font-size: 15px;
+}
+.job-banner .name {
+    font-size: 32px;
+    line-height: 45px;
+    padding: 11px 0 8px;
+}
+.job-banner .name {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 400;
+    padding: 5px 0 8px;
+}
+.company-new .tag-more .link-more, .job-tags span, .tag-container .tag-more .link-more {
+    display: inline-block;
+    padding: 0 15px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #5ed5c8;
+    color: #5ed5c8;
+    height: 23px;
+    line-height: 23px;
+    border-radius: 13px;
+    margin-top: 0;
+    vertical-align: top;
+}
+.detail-box .tag-container {
+    line-height: 0;
+}
+.tag-container {
+    width: 750px;
+    position: relative;
+}
+.tag-container {
+    display: inline-block;
+}
+.job-banner .op-container {
+    overflow: hidden;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+a, b, body, button, dd, div, dl, em, footer, form, h1, h2, h3, h4, h5, h6, i, input, label, li, nav, p, select, span, td, textarea, u, ul {
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+}
+.company-stat .op .icon-resume-login, .company-stat .op .icon-upload-login, .job-banner .op-container .icon-resume-login, .job-banner .op-container .icon-upload-login {
+    color: #5ed5c8;
+}
+.job-banner .op-container a {
+    height: 22px;
+    line-height: 22px;
+    font-size: 20px;
+    color: #fa6a43;
+    float: right;
+    margin-left: 10px;
+}
+.careerDetail{
+    width: 50%;
+    height: auto;
+    margin-left: 15%;
+    margin-top: 30px;
+    font-size: 16px;
+    border-right: 1px solid #eeeeee;
+    float: left;
+}
+.careerLeader{
+    border-radius: 50%;
+    margin: 30px 30px;
+
+}
+.careerSend{
+    margin-left: 40px;
+    background-color: #5dd5c8;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10%;
+}

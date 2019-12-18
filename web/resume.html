@@ -5,7 +5,9 @@
     <title>resume</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" href="../css/resumeCss.css" charset="utf-8">
+    <link rel="stylesheet" href="css/resumeCss.css" charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <script>
@@ -13,7 +15,7 @@
         $(".headerpage").load('header.html');
     });
 </script>
-    <div>
+    <div id="resume">
         <div>
             <div class="headerpage"></div>
             <div class="resumeBody">
@@ -22,31 +24,31 @@
                     <form>
                         <div style="margin-left: 83px">
                             <h5>姓名</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="name" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>性别</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="sex" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>电话</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="phone" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>地址</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="address" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>生日</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="birth" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>邮箱</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="email" style="width: 400px;height: 35px">
                         </div>
                         <div style="margin-left: 83px">
                             <h5>微信号</h5>
-                            <input type="text" style="width: 400px;height: 35px">
+                            <input type="text" id="wxid" style="width: 400px;height: 35px">
                         </div>
                         <div style="float:right;">
                             <img class="resumeImg" src="https://static.zhipin.com/zhipin-geek/v102/web/geek/images/pro-1.png">
@@ -58,33 +60,96 @@
                     </form>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">个人优势</h3>
-                    <div class="advantage">
+                    <textarea class="advantage" id="personal_skill">
                         熟悉Python,Java基础，掌握Python后台常用框架Flaks,Django，Java ssm开发，熟练使用爬虫技术获取数据，对redis有一定掌握，了解HBase，Hive的存储原理，HBase,Hive存储架构，熟悉Zookeeper工作原理，高可用架构
-                    </div>
+                    </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">期望职位</h3>
-                    <div class="advantage">
+                    <textarea class="advantage" id="hope_career">
                         后端工程师
-                    </div>
+                    </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">实习经历</h3>
-                    <div class="advantage">
+                    <textarea class="advantage" id="work_exp">
                         无
-                    </div>
+                    </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">项目经历</h3>
-                    <div class="advantage">
+                    <textarea class="advantage" id="project_exp">
                         无
-                    </div>
+                    </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">教育经历</h3>
-                    <div class="advantage">
+                    <textarea class="advantage" id="study_exp">
                         无
-                    </div>
+                    </textarea>
+
+                    <button style="color: white;background-color:#5dd5c8;width:200px;margin-left: 348px;height: 40px"  id="btn">保存</button>
                 </div>
             </div>
 
         </div>
     </div>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+
+            var name = document.getElementById("name").value;
+            var sex = document.getElementById("sex").value;
+            var phone = document.getElementById("phone").value;
+            var birth = document.getElementById("birth").value;
+            var email = document.getElementById("email").value;
+            var wxid = document.getElementById("wxid").value;
+            var personal_skill = document.getElementById("personal_skill").value;
+            var hope_career = document.getElementById("hope_career").value;
+            var work_exp = document.getElementById("work_exp").value;
+            var project_exp = document.getElementById("project_exp").value;
+            var study_exp = document.getElementById("study_exp").value;
+
+            console.log("aaa"+name);
+
+            var xmlHttp = createXMLHttpRequest();
+
+            xmlHttp.open("POST",'http://localhost:8080/api/personal/cv/create', true);
+            xmlHttp.onreadystatechange = handler;
+            xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlHttp.setRequestHeader('Access-Control-Allow-Origin','*');
+            xmlHttp.setRequestHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie, token');
+            xmlHttp.setRequestHeader('Access-Control-Allow-Method','POST,GET');
+            var data = 'name=' + name  + '&sex=' + sex+ '&phone=' + phone+ '&birth=' + birth+ '&email=' + email+ '&wxid=' + wxid+ '&personal_skill=' + personal_skill+ '&hope_career=' + hope_career
+                + '&work_exp=' + work_exp+ '&project_exp=' + project_exp+ '&study_exp=' + study_exp;
+
+            xmlHttp.send(data);
+
+            function handler() {
+
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+                    var responseText = xmlHttp.responseText;
+                    var info = JSON.parse(responseText);
+
+                    if(info.code == 1){
+                        var msg="用户名或密码错误";
+                        document.getElementById("msg").innerText=msg;
+
+                    }else{
+                        alert("保存成功！");
+                    }
+                }
+            }
+
+        }
+    });
+
+    function createXMLHttpRequest() {
+        return new XMLHttpRequest()
+    };
+
+</script>
+
 </body>
 </html>

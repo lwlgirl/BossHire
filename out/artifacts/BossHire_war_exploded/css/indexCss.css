@@ -1,0 +1,192 @@
+.indexNav{
+    height: 40px;
+    width: 100%;
+    background-color: black;
+   * clear: both;
+    position: fixed;
+    z-index: 1000;
+
+}
+.indexNavRight{
+    margin-left: 20%;
+    clear: both;
+    display: block;
+    float: right;
+}
+.indexBody{
+    width: 100%;
+    height: auto;
+    padding-top: 2%;
+    background-color: #f6f6f8;
+}
+.indexImg{
+    width: 30%;
+    *text-align: center;
+    height: 118px;
+    margin-left: 30%;
+
+}
+.indexImgDiv{
+    width: 100%;
+    height:120px;
+    background-color: #5dd5c8;
+}
+.indexSearchInputDiv{
+    text-align: center;
+}
+.indexSearchInput{
+    width: 30%;
+    margin-top:30px;
+    height:50px;
+    font-size: 18px;
+}
+.indexSearchButton{
+    width: 5%;
+    margin-top:30px;
+    height:50px;
+    background-color: #5dd5c8;
+    color: white;
+    font-size: 18px;
+}
+.indexNav1Div{
+    z-index: 10000;
+    background-color: #fff;
+    margin-left: 20%;
+    margin-top:20px;
+}
+ul{
+    list-style: none;
+}
+.indexNav1{
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    width: 300px;
+    *margin-left: -41px;
+    *z-index: -1;
+}
+
+.indexNav2{
+    display: none;
+    background-color: white;
+    position: absolute;
+    width: 200px;
+    left: 300px;
+    top: 0px;
+}
+
+.indexNav1 > li{
+    text-align: center;
+    height: 40px;
+    width: 300px;
+    margin-left: -40px;
+    line-height: 3;
+    border-bottom: #f6f6f8 solid 1px;
+}
+
+.indexNav2 > li{
+    height: 40px;
+    width: 200px;
+    margin-left: -40px;
+}
+
+.indexNav3 > li{
+    height: 40px;
+    width: 200px;
+    margin-left: -40px;
+}
+
+.indexNav3{
+    display: none;
+    background-color: white;
+    position: absolute;
+    width: 200px;
+    left: 200px;
+    top: 0px;
+}
+
+.indexNav1 li:hover{
+    background-color: #5dd5c8;
+}
+
+.indexNav1 li:hover .indexNav2{
+    display: block;
+
+}
+
+.indexNav2 li:hover .indexNav3{
+    display: block;
+}
+.indexAds{
+    margin-left: 690px;
+}
+.indexAds2{
+    margin-left: 525px;
+    margin-top:-227px
+}
+.indexAds4{
+    margin-left: 525px;
+    margin-top:-227px
+}
+.indexAds5{
+    margin-left: 525px;
+    *margin-top:-200px
+}
+.indexAds7{
+    margin-left: 525px;
+    margin-top:-112px
+}
+.indexDivBar{
+    margin: 30px auto;
+    width: 65%;
+}
+.indexDiv{
+    height: 110px;
+    width: 350px;
+    background-color: white;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+.indexDivLabel{
+    margin-top:15px;
+    margin-left:30px;
+    position: absolute;
+}
+.indexDivLabel:hover{
+    color: #5dd5c8;
+}
+.indexDivSalary{
+    color: darkorange;
+    float: right;
+    margin: 10px 20px;
+}
+.indexDivTital{
+    margin-left: 30px;
+    position: relative;
+    margin-top:40px;
+    font-size: 10px;
+    color: #6f6a6a;
+}
+.indexDivLeader{
+    color: #6f6a6a;
+    font-size:10px;
+    margin-top: 10px;
+    margin-left:30px;
+}
+.indexDivLeaderImg{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+.indexDivLeaderSpan{
+    color: #6f6a6a;
+    font-size:10px;
+    margin-top: -15px;
+    margin-left:20px;
+}
+
+

@@ -1,0 +1,81 @@
+.searchSearchDiv{
+    height: 200px;
+    width: 100%;
+    padding-top: 40px;
+    background-color: white;
+    position: fixed;
+    z-index: 999;
+    box-shadow: 0 3px 6px rgba(6,0,1,.05);
+
+}
+.searchBody{
+    height:1000px;
+    width: 100%;
+    background-color: #f6f6f8;
+    padding-top:200px
+}
+.searchList{
+    background-color: white;
+    height: 1000px;
+    width: 50%;
+    margin-left: 15%;
+    border-top:40px solid #f6f6f8;
+    position: relative;
+    float: left;
+
+}
+.searchList1{
+    height:50px;
+}
+.searchTital{
+    color: #5dd5c8;
+    font-size: 18px;
+    margin-top:20px;
+    margin-left:30px;
+    position: absolute;
+}
+.searchSalary{
+    color: #fc703e;
+    margin-left: 220px;
+    margin-top:20px;
+    position: absolute;
+}
+.searchName{
+     margin-left: 300px;
+     position: absolute;
+     margin-top: 20px;
+     font-size: 16px;
+
+ }
+.searchName:hover{
+    color: #5dd5c8;
+}
+.searchLeader{
+    margin-left: 793px;
+    position: absolute;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.searchSpan{
+    margin-left: 840px;
+    position: absolute;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.searchLeaderDepartment{
+    margin-left: 848px;
+    position: absolute;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.searchLine{
+    border-bottom: 2px solid #eeeeee;
+    width: auto;
+
+}
+.searchAds{
+    float: right;
+    margin-right:312px;
+    margin-top: 40px;
+
+}

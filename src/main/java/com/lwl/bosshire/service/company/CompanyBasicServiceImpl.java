@@ -80,6 +80,11 @@ class CompanyBasicServiceImpl implements CompanyBasicService {
         }
     }
 
+    @Override
+    public ServiceResponse<Void> CompanyInfo() {
+        return null;
+    }
+
 
     @Override
     public ServiceResponse<Void> addCareer(Career career) {

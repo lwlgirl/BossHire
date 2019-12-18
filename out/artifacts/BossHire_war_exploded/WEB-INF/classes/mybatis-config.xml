@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 注意该属性必须放在最前面，因为源码中设计是需要先加载此配置！ -->
+    <properties resource="config.properties"/>
+    <typeAliases>
+        <!-- 此处配置的是sql查询后返回的类型所在包位置 -->
+        <package name="com.lwl.bosshire.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/TagMapper.xml"/>
+        <mapper resource="mapper/JobApplyMapper.xml"/>
+        <mapper resource="mapper/ImageMapper.xml"/>
+        <mapper resource="mapper/CVMapper.xml"/>
+        <mapper resource="mapper/CompanyMapper.xml"/>
+        <mapper resource="mapper/CareerTypeMapper.xml"/>
+        <mapper resource="mapper/CareerTagMapper.xml"/>
+        <mapper resource="mapper/CareerMapper.xml"/>
+    </mappers>
+
+</configuration>
