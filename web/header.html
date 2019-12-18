@@ -18,12 +18,13 @@
                         <li><a href="index.html" style="color: #5dd5c8;">首页</a></li>
                         <li><a href="search.html" style="color: #5dd5c8;">职位</a></li>
                         <li><a href="companyList.html" style="color: #5dd5c8;">公司</a></li>
-                        <li><a href="#" style="color: #5dd5c8;">APP</a></li>
-                        <li><a href="#" style="color: #5dd5c8;">资讯</a></li>
-                        <li style="float: right"><a href="resume.html" style="color: #5dd5c8;display: none" id="username"></a></li>
+<!--                        <li><a href="#" style="color: #5dd5c8;">APP</a></li>-->
+<!--                        <li><a href="#" style="color: #5dd5c8;">资讯</a></li>-->
+                        <li style="float: right"><a style="color: #5dd5c8;display: none" id="logout" onclick="logout()">注销</a></li>
+                        <li style="float: right"><a style="color: #5dd5c8;display: none" id="username"></a></li>
                         <li style="float: right"><a href="register.html" style="color: #5dd5c8;" id="register">注册</a></li>
                         <li style="float: right"><a href="login.html" style="color: #5dd5c8;" id="login">登录</a></li>
-                        <li style="float: right"><a href="#" style="color: #5dd5c8;">上传简历</a></li>
+                        <li style="float: right"><a href="resume.html" style="color: #5dd5c8;">在线填写简历</a></li>
                     </ul>
                 </div>
             </div>
@@ -31,20 +32,25 @@
     </div>
 
 <script>
-
     $(document).ready(function() {
         var username = sessionStorage.getItem('username');
-        document.getElementById("username").innerText="欢迎您！"+username;
-        $("#register").css("display",'none');
-        $("#login").css("display",'none');
-        $("#username").css("display",'');
         if (username != null) {
-
+            document.getElementById("username").innerText="欢迎您！"+username;
+            $("#register").css("display",'none');
+            $("#login").css("display",'none');
+            $("#username").css("display",'');
+            $("#logout").css("display",'');
         } else {
             var msg = "请先登录！";
+            alert(msg);
             window.location.href = 'login.html';
         }
     });
+
+    var logout = function () {
+        sessionStorage.removeItem("username");
+        window.location.href = 'login.html';
+    }
 </script>
 </body>
 </html>

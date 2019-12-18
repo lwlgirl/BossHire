@@ -8,7 +8,7 @@
 <!--    <link rel="import" href="html/header.html" id="page1">-->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-    <link rel="stylesheet" href="/css/companyListCss.css" charset="utf-8">
+    <link rel="stylesheet" href="css/companyListCss.css" charset="utf-8">
 </head>
 <body>
 <script>
@@ -17,7 +17,7 @@
     });
 </script>
 
-    <div>
+    <div id="index">
 
         <div class="headerpage"></div>
 <!--        <embed type="text/html" src="html/head.html" />-->
@@ -25,12 +25,12 @@
 
         <div class="indexBody">
             <div class="indexImgDiv">
-                <img class="indexImg" src="https://static.zhipin.com/v2/web/geek/images/fast-reg.png">
+                <img class="indexImg" src="https://static.zhipin.com/v2/web/geek/images/fast-reg.png" >
             </div>
 
             <div class="indexSearchInputDiv">
-                <input type="text" class="indexSearchInput"/>
-                <input type="button" class="indexSearchButton" value="搜索"/>
+                <input type="text" class="indexSearchInput" id="searchContent"/>
+                <input type="button" class="indexSearchButton"  value="搜索" onclick="search" id="btn"/>
             </div>
 
             <div class="indexNav1Div">
@@ -314,5 +314,16 @@
 
 
     </div>
+<script>
+
+    var key = document.getElementById("searchContent").value;
+
+    var search = function(){
+        window.location.href = 'search.html?'+"key="+key;
+    };
+
+
+</script>
+
 </body>
 </html>

@@ -7,6 +7,9 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="css/searchCss.css" charset="utf-8">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <script>
@@ -15,7 +18,7 @@
     });
 </script>
 
-    <div>
+    <div id="search">
         <div class="headerpage"></div>
 
         <div class="indexSearchInputDiv searchSearchDiv ">
@@ -25,36 +28,13 @@
 
         <div class="searchBody">
             <div class="searchList">
-                <div class="searchList1">
-                    <span class="searchTital"><a href="#" style="color: #5dd5c8;">初级JAVA开发工程师</a></span>
-                    <span class="searchSalary">6-7K</span>
-                    <span class="searchName"><a href="#" style="color: black;">云次方</a></span>
-                    <span class="searchLeader"><a href="#" style="color: black;">刘喜艳</a></span>
-                    <span class="searchSpan">|</span>
-                    <span class="searchLeaderDepartment">人事</span>
+                <div class="searchList1" v-for="temp in info">
+                    <span class="searchTital"><a href="career.html" style="color: #5dd5c8;">{{temp.name}}</a></span>
+                    <span class="searchSalary">{{temp.salaryMin}}-{{temp.salaryMax}}K</span>
+                    <span class="searchName"><a href="#" style="color: black;">{{temp.type}}</a></span>
+                    <span class="searchLeader"><a href="#" style="color: black;">{{temp.leader}}</a></span>
 <!--                    <span class="searchLine"></span>-->
                    <br> <br><hr>
-                </div>
-
-                <div class="searchList1">
-                    <span class="searchTital"><a href="#" style="color: #5dd5c8;">初级JAVA开发工程师</a></span>
-                    <span class="searchSalary">6-7K</span>
-                    <span class="searchName"><a href="#" style="color: black;">云次方</a></span>
-                    <span class="searchLeader"><a href="#" style="color: black;">刘喜艳</a></span>
-                    <span class="searchSpan">|</span>
-                    <span class="searchLeaderDepartment">人事</span>
-<!--                    <span class="searchLine"></span>-->
-                    <br><br> <hr>
-                </div>
-                <div class="searchList1">
-                    <span class="searchTital"><a href="#" style="color: #5dd5c8;">初级JAVA开发工程师</a></span>
-                    <span class="searchSalary">6-7K</span>
-                    <span class="searchName"><a href="#" style="color: black;">云次方</a></span>
-                    <span class="searchLeader"><a href="#" style="color: black;">刘喜艳</a></span>
-                    <span class="searchSpan">|</span>
-                    <span class="searchLeaderDepartment">人事</span>
-                    <!--                    <span class="searchLine"></span>-->
-                    <br><br> <hr>
                 </div>
             </div>
 
@@ -74,6 +54,96 @@
 
 
     </div>
+<script>
+    $(document).ready(function() {
 
+        var key = $.query.get("key");
+        console.log(key);
+
+        var vm = new Vue({
+            el: '#search',
+            data:{
+                info:null
+            },
+
+            methods: {
+                fetchData() {
+                    axios.get('http://localhost:8080/api/career/search', {
+                        params: {
+                            jobName:key,
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.info = response.data.data;
+                        console.log(this.info);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        var vm = new Vue({
+            el: '#search',
+            data:{
+                info:[{
+                    name:'初级JAVA开发工程师',
+                    salaryMin:12,
+                    salaryMax:15,
+                    type:'后台开发工程师',
+                    leader:'张三'
+                },{
+                    name:'UI设计师',
+                    salaryMin: 12,
+                    salaryMax: 20,
+                    type: '前端开发工程师',
+                    leader:'李四'
+
+                }],
+            },
+
+            created: function () {
+                console.log("created");
+                //this.fetchData();
+            },
+            methods: {
+                fetchData() {
+                    axios.get('http://fs2.lzfnb.top/api/bbs/view/list', {
+                        params: {
+
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.info = response.data.data;
+                        console.log(this.info);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
 </body>
 </html>

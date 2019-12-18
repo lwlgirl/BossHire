@@ -60,28 +60,23 @@
                     </form>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">个人优势</h3>
-                    <textarea class="advantage" id="personal_skill">
-                        熟悉Python,Java基础，掌握Python后台常用框架Flaks,Django，Java ssm开发，熟练使用爬虫技术获取数据，对redis有一定掌握，了解HBase，Hive的存储原理，HBase,Hive存储架构，熟悉Zookeeper工作原理，高可用架构
+                    <textarea class="advantage" id="personal_skill">熟悉Python,Java基础，掌握Python后台常用框架Flaks,Django，Java ssm开发，熟练使用爬虫技术获取数据，对redis有一定掌握，了解HBase，Hive的存储原理，HBase,Hive存储架构，熟悉Zookeeper工作原理，高可用架构
                     </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">期望职位</h3>
-                    <textarea class="advantage" id="hope_career">
-                        后端工程师
+                    <textarea class="advantage" id="hope_career">后端工程师
                     </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">实习经历</h3>
-                    <textarea class="advantage" id="work_exp">
-                        无
+                    <textarea class="advantage" id="work_exp">无
                     </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">项目经历</h3>
-                    <textarea class="advantage" id="project_exp">
-                        无
+                    <textarea class="advantage" id="project_exp">无
                     </textarea>
 
                     <h3 style="margin-left: 80px;margin-top: 50px;">教育经历</h3>
-                    <textarea class="advantage" id="study_exp">
-                        无
+                    <textarea class="advantage" id="study_exp">无
                     </textarea>
 
                     <button style="color: white;background-color:#5dd5c8;width:200px;margin-left: 348px;height: 40px"  id="btn">保存</button>
@@ -133,10 +128,9 @@
                     var info = JSON.parse(responseText);
 
                     if(info.code == 1){
-                        var msg="用户名或密码错误";
-                        document.getElementById("msg").innerText=msg;
+                        alert("保存失败！");
 
-                    }else{
+                    }else if(info.code == 0){
                         alert("保存成功！");
                     }
                 }

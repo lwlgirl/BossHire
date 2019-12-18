@@ -5,7 +5,10 @@
     <title></title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" href="../css/careerCss.css" charset="utf-8">
+    <link rel="stylesheet" href="css/careerCss.css" charset="utf-8">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <script>
@@ -13,13 +16,13 @@
         $(".headerpage").load('header.html');
     });
 </script>
-    <div>
-        <div class="headerpage"></div>
+    <div id="career">
+<!--        <div class="headerpage"></div>-->
         <div class="job-banner">
             <div class="inner home-inner">
                 <div class="job-primary detail-box">
                     <div class="info-primary">
-                        <p>高级后端开发工程师<em class="dolt"></em>15-25K<em class="dolt"></em></p>
+                        <p>{{info.name}}<em class="dolt"></em>{{info.salaryMin}}-{{info.salaryMax}}K<em class="dolt"></em></p>
                         <div class="tag-container">
                             <div class="job-tags">
                                 <span>五险一金</span><span>补充医疗保险</span><span>定期体检</span><span>年终奖</span><span>带薪年假</span><span>员工旅游</span><span>免费班车</span><span>交通补助</span><span>包吃</span><span>节日福利</span><span>无息房贷</span>
@@ -30,9 +33,9 @@
 
                         <div class="op-container">
                             <!-- 在线简历 -->
-                            <a href="/web/geek/resume" class="fl icon-resume-login" ka="job_online_resume_1"><i class="icon"></i>完善在线简历</a>
+                            <a href="resume.html" class="fl icon-resume-login" ka="job_online_resume_1"><i class="icon"></i>完善在线简历</a>
                             <!-- 附件简历 -->
-                            <a href="javascript:;" class="fr icon-upload-login attachment-resume-upload" ka="job_attach_resume_1"><i class="icon"></i>新增附件简历</a>
+<!--                            <a href="javascript:;" class="fr icon-upload-login attachment-resume-upload" ka="job_attach_resume_1"><i class="icon"></i>新增附件简历</a>-->
                         </div>
                     </div>
                 </div>
@@ -42,47 +45,33 @@
         <div class="careerDetail">
             <h3>职位描述:</h3>
             <div>
-                1、 负责根据公司人工智能科研项目的需要，做配套的软件开发工作；<br>
-                2、 负责公司平台产品的基础架构的设计，系统框架搭建以及核心功能开发；<br>
-                3、 深入发掘业务需求，开发后端基础服务，沉淀技术积累；<br>
-                4、 解决产品开发过程中的高性能，高并发和高可靠性问题。<br>
+                {{info.desc}}
             </div>
         </div>
 
         <div class="careerDetail">
             <h3>岗位要求:</h3>
             <div>
-                1、 两年以上互联网开发经验，精通后端开发；<br>
-                2、 有过Python/Nodejs开发经验；<br>
-                3、 对后端性能和调优有丰富的经验；<br>
-                4、 有一定的架构思想，对分布式计算，分布式存储的架构设计理念和动机有一定的关注和理解；<br>
-                5、 具有流媒体经验者优先；<br>
-                6、 有APP相关开发经验；<br>
-                7、 责任心强，有较强的学习能力，较好的沟通交流能力，能够迅速融入团队；<br>
-                8、对人工智能的发展有热情者优先；<br>
+               {{info.require}}
             </div>
         </div>
 
         <div class="careerDetail">
             <h3>公司介绍:</h3>
             <div>
-                定位：开创人工智能影视制作新纪元<br>
-                愿景：实现通用人工智能<br>
-                核心价值观：自驱、激情、创造、健康、爽<br>
-                ◆聚力维度前身为十二维度（北京）科技有限公司，创始于2012年，专注计算机视觉和人工智能核心技术研发，并深入影视领域，参与《机械战警》、《警察故事》、《狼图腾》等多部一线影视制作。<br>
-                ◆现阶段定
+               {{info.intro}}
             </div>
         </div>
 
         <div class="careerDetail" style="margin-bottom: 50px">
             <h3>工作地址:</h3>
             <div>
-                北京市 朝阳区 非中心5号楼 4层
+                {{info.address}}
             </div>
         </div>
 
         <div class="careerLeader">
-            <span style="margin-left: 40px">王倩</span>
+            <span style="margin-left: 40px">{{info.leader}}</span>
             <span>-</span>
             <span>HR</span>
             <br>
@@ -91,5 +80,69 @@
             <input class="careerSend" type="button" value="发送简历">
         </div>
     </div>
+
+<script>
+    $(document).ready(function() {
+
+        var vm = new Vue({
+            el: '#career',
+            data:{
+                info:{
+                    name:'高级后端开发工程师',
+                    salaryMin:12,
+                    salaryMax:15,
+                    desc:'1、 负责根据公司人工智能科研项目的需要，做配套的软件开发工作；\n' +
+                        '2、 负责公司平台产品的基础架构的设计，系统框架搭建以及核心功能开发；\n' +
+                        '3、 深入发掘业务需求，开发后端基础服务，沉淀技术积累；\n' +
+                        '4、 解决产品开发过程中的高性能，高并发和高可靠性问题。',
+                    require:'1、 两年以上互联网开发经验，精通后端开发；\n' +
+                        '2、 有过Python/Nodejs开发经验；\n' +
+                        '3、 对后端性能和调优有丰富的经验；\n' +
+                        '4、 有一定的架构思想，对分布式计算，分布式存储的架构设计理念和动机有一定的关注和理解；\n' +
+                        '5、 具有流媒体经验者优先；\n' +
+                        '6、 有APP相关开发经验；\n' +
+                        '7、 责任心强，有较强的学习能力，较好的沟通交流能力，能够迅速融入团队；\n' +
+                        '8、对人工智能的发展有热情者优先；',
+                    intro:'定位：开创人工智能影视制作新纪元\n' +
+                        '愿景：实现通用人工智能\n' +
+                        '核心价值观：自驱、激情、创造、健康、爽\n' +
+                        '◆聚力维度前身为十二维度（北京）科技有限公司，创始于2012年，专注计算机视觉和人工智能核心技术研发，并深入影视领域，参与《机械战警》、《警察故事》、《狼图腾》等多部一线影视制作。\n' +
+                        '◆现阶段定',
+                    address:'北京市 朝阳区 非中心5号楼 4层',
+                    leader:'王倩'
+                }
+            },
+
+            created: function () {
+                console.log("created");
+                //this.fetchData();
+            },
+            methods: {
+                fetchData() {
+                    axios.get('http://fs2.lzfnb.top/api/bbs/view/list', {
+                        params: {
+
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.info = response.data.data;
+                        console.log(this.info);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!-- 数据库驱动包位置 -->
-    <classPathEntry location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar" />
+    <classPathEntry location="C:/Users/Admin/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar" />
 
     <context id="sqlGenerate" targetRuntime="MyBatis3">
         <!-- 是否去除自动生成的注释 true：是 ： false:否 -->

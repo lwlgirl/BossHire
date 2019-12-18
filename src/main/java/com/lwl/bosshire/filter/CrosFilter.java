@@ -1,5 +1,7 @@
 package com.lwl.bosshire.filter;
 
+import sun.misc.BASE64Encoder;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,9 @@ public class CrosFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "*");
         /* 是否携带cookie */
         response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        response.setHeader("token", new BASE64Encoder().encode(request.getSession().getId().getBytes()));
+
         if(request.getRequestURI().startsWith("/api")) {
             if(!request.getRequestURI().startsWith("/api/image")) {
                 response.setContentType("application/json");

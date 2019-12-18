@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resume</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/resumeCss.css" charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<script>
+    $(function(){
+        $(".headerpage").load('header.html');
+    });
+</script>
+<div id="checkDetail">
+    <div>
+        <div class="headerpage"></div>
+        <div class="resumeBody">
+            <div class="resumeMid">
+                <h3 style="margin-left: 80px;margin-top: 50px;">个人信息</h3>
+                <form>
+                    <div style="margin-left: 83px">
+                        <h5>姓名</h5>
+                        <input type="text" readonly id="name" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>性别</h5>
+                        <input type="text" readonly  id="sex" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>电话</h5>
+                        <input type="text" readonly id="phone" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>地址</h5>
+                        <input type="text" readonly id="address" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>生日</h5>
+                        <input type="text" readonly id="birth" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>邮箱</h5>
+                        <input type="text" readonly id="email" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="margin-left: 83px">
+                        <h5>微信号</h5>
+                        <input type="text" readonly id="wxid" style="width: 400px;height: 35px">
+                    </div>
+                    <div style="float:right;">
+                        <img class="resumeImg" src="https://static.zhipin.com/zhipin-geek/v102/web/geek/images/pro-1.png">
+                    </div>
+                </form>
+
+                <h3 style="margin-left: 80px;margin-top: 50px;">个人优势</h3>
+                <textarea class="advantage" readonly id="personal_skill">熟悉Python,Java基础，掌握Python后台常用框架Flaks,Django，Java ssm开发，熟练使用爬虫技术获取数据，对redis有一定掌握，了解HBase，Hive的存储原理，HBase,Hive存储架构，熟悉Zookeeper工作原理，高可用架构
+                    </textarea>
+
+                <h3 style="margin-left: 80px;margin-top: 50px;">期望职位</h3>
+                <textarea class="advantage" readonly id="hope_career">后端工程师
+                    </textarea>
+
+                <h3 style="margin-left: 80px;margin-top: 50px;">实习经历</h3>
+                <textarea class="advantage" readonly id="work_exp">无
+                    </textarea>
+
+                <h3 style="margin-left: 80px;margin-top: 50px;">项目经历</h3>
+                <textarea class="advantage" readonly id="project_exp">无
+                    </textarea>
+
+                <h3 style="margin-left: 80px;margin-top: 50px;">教育经历</h3>
+                <textarea class="advantage" readonly id="study_exp">无</textarea>
+
+                <select style="color: white;background-color:#5dd5c8;width:200px;margin-left: 100px;height: 40px">
+                    <option value="0">选择状态</option>
+                    <option value="1">等待比试</option>
+                    <option value="2">等待面试</option>
+                    <option value="3">通过</option>
+                    <option value="4">未通过</option>
+                </select>
+                <button style="color: white;background-color:#5dd5c8;width:200px;margin-left: 250px;height: 40px"  id="btn">确定</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+
+        var vm = new Vue({
+            el: '#checkDetail',
+            data:{
+                info:null,
+            },
+
+            created: function () {
+                console.log("created");
+                this.fetchData();
+            },
+            methods: {
+                fetchData() {
+                    axios.get('http://fs2.lzfnb.top/api/bbs/view/list', {
+                        params: {
+                            room: 1,
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                            'Platform-Token': token,
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.info = response.data.data;
+                        console.log(this.info[0].title);
+                        console.log(this.info.length);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
+
+</body>
+</html>

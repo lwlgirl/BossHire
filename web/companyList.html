@@ -6,6 +6,9 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="css/companyListCss.css" charset="utf-8">
+    <script src="js/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <script>
@@ -13,7 +16,7 @@
         $(".headerpage").load('header.html');
     });
 </script>
-    <div class="companyList">
+    <div id="companyList" class="companyList">
         <div class="headerpage"></div>
 
         <div class="companyListHead">
@@ -158,69 +161,67 @@
             <div class="companyList">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName"><a href="company.html">百度</a></span>
-                            <span class="companyListLabel">互联网</span>
+                        <div class="col-md-3 col-xs-8 companyListBar" v-for="temp in info">
+                            <img class="companyListImg"  :src="temp.headImg">
+                            <span class="companyListName"><a href="company.html">{{temp.name}}</a></span>
+                            <span class="companyListLabel">{{temp.type}}</span>
                             <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName"><a href="company.html">百度</a></span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName"><a href="company.html">百度</a></span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName"><a href="company.html">百度</a></span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName">百度</span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName">百度</span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName">百度</span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
-                        </div>
-                        <div class="col-md-3 col-xs-8 companyListBar">
-                            <img class="companyListImg" src="https://img.bosszhipin.com/beijin/mcs/chatphoto/20190516/e9f2424606108522ab9341d6cd8905ea39c34ca7887b61bc4ba563082410a58d_s.jpg?x-oss-process=image/resize,w_120,limit_0">
-                            <span class="companyListName">百度</span>
-                            <span class="companyListLabel">互联网</span>
-                            <hr style="margin-top: 85px">
-                            <span class="companyListHot">热招：前端开发工程师</span>
+                            <span class="companyListHot">热招：{{temp.hotHire}}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+<script>
+    $(document).ready(function() {
+
+        var vm = new Vue({
+            el: '#companyList',
+            data:{
+                info:[{
+                    name:'百度',
+                    type:'互联网',
+                    headImg:'https://img.bosszhipin.com/beijin/mcs/chatphoto/20170508/a54e01e16b6c21bcbd384f71f0751e8c4f9fa4eb54ce4dabf1e0eb2368b1e816.jpg?x-oss-process=image/resize,w_120,limit_0',
+                    hotHire:'前端开发工程师'
+                },{
+                    name:'腾讯',
+                    type: '互联网',
+                    headImg: "https://img.bosszhipin.com/beijin/mcs/bar/brand/109.jpg",
+                    hotHire:'后端开发工程师'
+                }],
+            },
+
+            created: function () {
+                console.log("created");
+                //this.fetchData();
+            },
+            methods: {
+                fetchData() {
+                    axios.get('http://fs2.lzfnb.top/api/bbs/view/list', {
+                        params: {
+
+                        },
+                        headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Content-Type": "application/javascript; charset=utf-8",
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        dataType: 'json',
+                    }).then(response => {
+                        this.info = response.data.data;
+                        console.log(this.info);
+
+                    }).catch(error => {
+                        console.log("error" + error);
+                        console.log("failure")
+                    })
+                },
+            }
+
+        });
+    })
+</script>
 </body>
 </html>
